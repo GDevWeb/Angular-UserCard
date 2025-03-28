@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Subscription, User } from '../../../../../types/user.type';
 
 @Component({
@@ -8,10 +8,33 @@ import { Subscription, User } from '../../../../../types/user.type';
   templateUrl: './card.component.html',
   styleUrl: './card.component.css',
 })
-export class CardComponent {
+export class CardComponent implements OnInit {
   @Input() userList!: User[];
 
   subscription = Subscription;
+  cardVisibility: boolean[] = [];
+
+  ngOnInit(): void {
+    this.cardVisibility = this.userList.map(() => false);
+  }
+
+  /* *** Get the value of the account_status *** */
+  getStatusValue(index: number) {
+    const getStatus = this.userList[index].account.status;
+
+    const statusValue = getStatus ? 'Enabled' : 'Disabled';
+    this.setColorStatus(statusValue);
+
+    return statusValue;
+  }
+
+  setColorStatus(value: string): string {
+    let color: string;
+
+    if (value === 'Enabled') return (color = 'text-green-500');
+
+    return (color = 'text-red-500');
+  }
 
   /* *** Get the value of the subscription *** */
   getSubscriptionStatus(index: number): string {
@@ -44,21 +67,21 @@ export class CardComponent {
     return color;
   }
 
-  /* *** Get the value of the account_status *** */
-  getStatusValue(index: number) {
-    const getStatus = this.userList[index].account.status;
+  greetUser(index: number): string {
+    const user = this.userList.find((u) => u.id === index);
 
-    const statusValue = getStatus ? 'Enabled' : 'Disabled';
-    this.setColorStatus(statusValue);
+    const message = `${user?.fname} ${user?.lname} says hello`;
 
-    return statusValue;
+    alert(message);
+
+    return message;
   }
 
-  setColorStatus(value: string): string {
-    let color: string;
+  toggleCardContent(index: number): void {
+    this.cardVisibility[index] = !this.cardVisibility[index];
+  }
 
-    if (value === 'Enabled') return (color = 'text-green-500');
-
-    return (color = 'text-red-500');
+  isCardContentVisibility(index: number): boolean {
+    return this.cardVisibility[index];
   }
 }

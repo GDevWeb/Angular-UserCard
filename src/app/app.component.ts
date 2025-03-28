@@ -26,13 +26,13 @@ export class AppComponent {
 4.  >conditionally render data :
       >✅@if @else ...
       >✅to fix the rendering of card on user.account.status from enum
-      
+5. >✅Functions      
+      >✅create a simple function greetUser that displays the name and some details
+      ✅handle the the value for property:
+       >✅account>status
+       >✅account>subscription
 *** Event ***
-5. create a simple function greetUser that displays the name and some details
-    a little bit complex handle the the value for property:
-     >account>status
-     >account>subscription
 ***@Output()***
-6. create a function that toggles the card-cotent 
+6. create a function that toggles the card-content 
 
 */

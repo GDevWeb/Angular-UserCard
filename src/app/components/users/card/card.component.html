@@ -21,41 +21,60 @@
         <span>{{ user.genre ? "🚺women" : "🚹men" }}</span>
       </p>
     </section>
-    <section id="card-content">
-      <h3>Skills</h3>
-      <ul>
-        @for (skill of user.skills; track $index) {
-        <li>➡️{{ skill }}</li>
-        }
-      </ul>
-    </section>
-    <section>
-      <h3>Hobbies</h3>
-      <ul>
-        @for (hobby of user.hobbies; track $index) {
-        <li>➡️{{ hobby }}</li>
-        }
-      </ul>
-    </section>
-    <section class="card-footer">
-      <h3>Account</h3>
-      <p>
-        <strong>Status: </strong>
-        <span [ngClass]="setColorStatus(getStatusValue($index))">{{
-          getStatusValue($index)
-        }}</span>
-      </p>
-      <div>
+    <div
+      id="card-content"
+      [hidden]="!isCardContentVisibility($index)"
+      class="w-full flex flex-col gap-4 items-start justify-evenly"
+    >
+      <section>
+        <h3>Skills</h3>
+        <ul>
+          @for (skill of user.skills; track $index) {
+          <li>➡️{{ skill }}</li>
+          }
+        </ul>
+      </section>
+      <section>
+        <h3>Hobbies</h3>
+        <ul>
+          @for (hobby of user.hobbies; track $index) {
+          <li>➡️{{ hobby }}</li>
+          }
+        </ul>
+      </section>
+      <section class="card-footer">
+        <h3>Account</h3>
         <p>
-          <strong>Subscription: </strong>
-          <span
-            [ngClass]="
-              setColorSubscriptionStatus(getSubscriptionStatus($index))
-            "
-            >{{ getSubscriptionStatus($index) }}</span
-          >
+          <strong>Status: </strong>
+          <span [ngClass]="setColorStatus(getStatusValue($index))">{{
+            getStatusValue($index)
+          }}</span>
         </p>
-      </div>
+        <div>
+          <p>
+            <strong>Subscription: </strong>
+            <span
+              [ngClass]="
+                setColorSubscriptionStatus(getSubscriptionStatus($index))
+              "
+              >{{ getSubscriptionStatus($index) }}</span
+            >
+          </p>
+        </div>
+      </section>
+    </div>
+    <section>
+      <h3>Buttons</h3>
+      <button (click)="greetUser($index)" type="button" class="btn-primary">
+        Greet
+      </button>
+      <button
+        (click)="toggleCardContent($index)"
+        type="button"
+        class="btn-primary"
+      >
+        {{ isCardContentVisibility($index) ? "Hide" : "Show" }}
+      </button>
     </section>
   </div>
   }
