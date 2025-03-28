@@ -1,0 +1,11 @@
+<section>
+  <div>
+    <h2>Skills of {{ currentUser.fname }} {{ currentUser.lname }}</h2>
+    <ul *ngIf="showSkills">
+      <li>{{ currentUser.skills }}</li>
+    </ul>
+  </div>
+  <button (click)="toggleSkillsVisibility()" type="button" class="btn-info">
+    {{ showSkills ? "Hide" : "Show" }}
+  </button>
+</section>

@@ -1,0 +1,62 @@
+<div id="grid" class="main-grid">
+  @for (user of userList; track $index) {
+  <div #userCard class="user-card">
+    <img
+      [src]="user.imgURL"
+      [alt]="`Photo of ${user.fname} ${user.lname}`"
+      [title]="`Photo of ${user.fname} ${user.lname}`"
+    />
+    <section class="card-header">
+      <h3>Identity</h3>
+      <p>
+        <strong>First name: </strong>
+        <span>{{ user.fname }}</span>
+      </p>
+      <p>
+        <strong>Last name: </strong>
+        <span>{{ user.lname }}</span>
+      </p>
+      <p>
+        <strong>Genre: </strong>
+        <span>{{ user.genre ? "🚺women" : "🚹men" }}</span>
+      </p>
+    </section>
+    <section id="card-content">
+      <h3>Skills</h3>
+      <ul>
+        @for (skill of user.skills; track $index) {
+        <li>➡️{{ skill }}</li>
+        }
+      </ul>
+    </section>
+    <section>
+      <h3>Hobbies</h3>
+      <ul>
+        @for (hobby of user.hobbies; track $index) {
+        <li>➡️{{ hobby }}</li>
+        }
+      </ul>
+    </section>
+    <section class="card-footer">
+      <h3>Account</h3>
+      <p>
+        <strong>Status: </strong>
+        <span [ngClass]="setColorStatus(getStatusValue($index))">{{
+          getStatusValue($index)
+        }}</span>
+      </p>
+      <div>
+        <p>
+          <strong>Subscription: </strong>
+          <span
+            [ngClass]="
+              setColorSubscriptionStatus(getSubscriptionStatus($index))
+            "
+            >{{ getSubscriptionStatus($index) }}</span
+          >
+        </p>
+      </div>
+    </section>
+  </div>
+  }
+</div>
