@@ -33,20 +33,18 @@ export class AppComponent {
 *** Input() ***
 3.  >✅render data from MOCK_USER
       >✅@for
-4.  >conditionally render data :
-      >✅@if @else ...
-      >✅to fix the rendering of card on user.account.status from enum
+*** Event ***
+***@Output()***
+4.  ✅create a function that toggles the card-content 
+          ✅create a function to delete an user
 5. >✅Functions      
       >✅create a simple function greetUser that displays the name and some details
       ✅handle the the value for property:
-       >✅account>status
-       >✅account>subscription
-
-*** Event ***
-***@Output()***
-6.  ✅create a function that toggles the card-content 
-    ✅create a function to delete an user
-
+      >✅account>status
+      >✅account>subscription     
+6.  >conditionally render data :
+            >✅@if @else ...
+            >✅to fix the rendering of card on user.account.status from enum
 *** services ***
 7.create a user.service
   > get
