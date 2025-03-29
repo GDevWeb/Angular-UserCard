@@ -2,7 +2,7 @@ import { Genre, Subscription, User } from '../types/user.type';
 
 const users: User[] = [
   {
-    id: 1,
+    id: 0,
     genre: Genre.male,
     fname: 'Liam',
     lname: 'Carter',
@@ -17,7 +17,7 @@ const users: User[] = [
     },
   },
   {
-    id: 2,
+    id: 1,
     genre: Genre.female,
     fname: 'Sophie',
     lname: 'Martin',
@@ -32,7 +32,7 @@ const users: User[] = [
     },
   },
   {
-    id: 3,
+    id: 2,
     genre: Genre.male,
     fname: 'Ethan',
     lname: 'Nguyen',
@@ -47,7 +47,7 @@ const users: User[] = [
     },
   },
   {
-    id: 4,
+    id: 3,
     genre: Genre.female,
     fname: 'Isabella',
     lname: 'López',
@@ -62,7 +62,7 @@ const users: User[] = [
     },
   },
   {
-    id: 5,
+    id: 4,
     genre: Genre.male,
     fname: 'Noah',
     lname: 'Smith',
@@ -77,7 +77,7 @@ const users: User[] = [
     },
   },
   {
-    id: 6,
+    id: 5,
     genre: Genre.female,
     fname: 'Ava',
     lname: 'Dubois',
@@ -92,7 +92,7 @@ const users: User[] = [
     },
   },
   {
-    id: 7,
+    id: 6,
     genre: Genre.male,
     fname: 'Lucas',
     lname: 'Meier',
@@ -107,7 +107,7 @@ const users: User[] = [
     },
   },
   {
-    id: 8,
+    id: 7,
     genre: Genre.female,
     fname: 'Chloe',
     lname: 'Tanaka',
@@ -122,7 +122,7 @@ const users: User[] = [
     },
   },
   {
-    id: 9,
+    id: 8,
     genre: Genre.male,
     fname: 'Gabriel',
     lname: 'Silva',
@@ -137,7 +137,7 @@ const users: User[] = [
     },
   },
   {
-    id: 10,
+    id: 9,
     genre: Genre.female,
     fname: 'Emma',
     lname: 'Schneider',

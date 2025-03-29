@@ -1,5 +1,5 @@
 <app-header />
 <main>
-  <app-card [userList]="usersList" />
+  <app-card [userList]="userList" (deleteUser)="onDeleteUser($event)" />
 </main>
 <app-footer />
