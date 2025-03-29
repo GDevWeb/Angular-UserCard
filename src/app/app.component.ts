@@ -41,10 +41,17 @@ export class AppComponent {
       >✅create a simple function greetUser that displays the name and some details
       ✅handle the the value for property:
       >✅account>status
-      >✅account>subscription     
+      >✅account>subscription    
+  @Computed()
+  handle a filter, filtering:
+    > name
+    > account_status
+    > subscription: states
+
 6.  >conditionally render data :
             >✅@if @else ...
             >✅to fix the rendering of card on user.account.status from enum
+            > fix the checkbox for the tasklist
 *** services ***
 7.create a user.service
   > get

@@ -23,4 +23,9 @@ export interface User {
     status: boolean;
     subscription: Subscription;
   };
+  tasks: {
+    title: string;
+    time: string;
+    summary: string;
+  }[];
 }

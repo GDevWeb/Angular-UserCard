@@ -15,6 +15,18 @@ const users: User[] = [
       status: true,
       subscription: Subscription.member,
     },
+    tasks: [
+      {
+        title: 'Fix navbar bug',
+        time: '2h',
+        summary: 'Resolve mobile menu collapse issue.',
+      },
+      {
+        title: 'Code review',
+        time: '1h',
+        summary: 'Review PRs from junior devs.',
+      },
+    ],
   },
   {
     id: 1,
@@ -30,6 +42,23 @@ const users: User[] = [
       status: true,
       subscription: Subscription.free,
     },
+    tasks: [
+      {
+        title: 'User interviews',
+        time: '3h',
+        summary: 'Conduct sessions with 5 users.',
+      },
+      {
+        title: 'Wireframe updates',
+        time: '2h',
+        summary: 'Revise homepage layout.',
+      },
+      {
+        title: 'Design system sync',
+        time: '1h',
+        summary: 'Align button styles across screens.',
+      },
+    ],
   },
   {
     id: 2,
@@ -45,6 +74,28 @@ const users: User[] = [
       status: true,
       subscription: Subscription.gold,
     },
+    tasks: [
+      {
+        title: 'Model tuning',
+        time: '2.5h',
+        summary: 'Optimize accuracy of prediction model.',
+      },
+      {
+        title: 'Data cleaning',
+        time: '1h',
+        summary: 'Handle null values and outliers.',
+      },
+      {
+        title: 'Monthly report',
+        time: '1h',
+        summary: 'Summarize KPI trends for leadership.',
+      },
+      {
+        title: 'Script automation',
+        time: '0.5h',
+        summary: 'Automate daily ETL jobs.',
+      },
+    ],
   },
   {
     id: 3,
@@ -60,6 +111,18 @@ const users: User[] = [
       status: false,
       subscription: Subscription.member,
     },
+    tasks: [
+      {
+        title: 'SEO Audit',
+        time: '1.5h',
+        summary: 'Analyze performance of blog posts.',
+      },
+      {
+        title: 'Ad campaign draft',
+        time: '2h',
+        summary: 'Create draft for summer sale.',
+      },
+    ],
   },
   {
     id: 4,
@@ -75,6 +138,7 @@ const users: User[] = [
       status: false,
       subscription: Subscription.free,
     },
+    tasks: [],
   },
   {
     id: 5,
@@ -90,6 +154,18 @@ const users: User[] = [
       status: true,
       subscription: Subscription.member,
     },
+    tasks: [
+      {
+        title: 'API refactor',
+        time: '2h',
+        summary: 'Improve structure for maintainability.',
+      },
+      {
+        title: 'PostgreSQL migration',
+        time: '1.5h',
+        summary: 'Migrate old schemas to new ones.',
+      },
+    ],
   },
   {
     id: 6,
@@ -105,6 +181,23 @@ const users: User[] = [
       status: true,
       subscription: Subscription.member,
     },
+    tasks: [
+      {
+        title: 'Sprint planning',
+        time: '1h',
+        summary: 'Prepare board for next sprint.',
+      },
+      {
+        title: 'Client call',
+        time: '1.5h',
+        summary: 'Discuss roadmap with stakeholders.',
+      },
+      {
+        title: 'Backlog grooming',
+        time: '1h',
+        summary: 'Refine user stories.',
+      },
+    ],
   },
   {
     id: 7,
@@ -120,6 +213,18 @@ const users: User[] = [
       status: true,
       subscription: Subscription.gold,
     },
+    tasks: [
+      {
+        title: 'Regression testing',
+        time: '2h',
+        summary: 'Run full test suite on staging.',
+      },
+      {
+        title: 'Bug triage',
+        time: '1h',
+        summary: 'Verify and categorize open tickets.',
+      },
+    ],
   },
   {
     id: 8,
@@ -135,6 +240,13 @@ const users: User[] = [
       status: false,
       subscription: Subscription.free,
     },
+    tasks: [
+      {
+        title: 'Pen test report',
+        time: '3h',
+        summary: 'Document vulnerabilities and patches.',
+      },
+    ],
   },
   {
     id: 9,
@@ -150,6 +262,28 @@ const users: User[] = [
       status: true,
       subscription: Subscription.gold,
     },
+    tasks: [
+      {
+        title: 'Model training',
+        time: '3h',
+        summary: 'Run training for new image dataset.',
+      },
+      {
+        title: 'Conference paper',
+        time: '2h',
+        summary: 'Write abstract and methodology.',
+      },
+      {
+        title: 'Experiment setup',
+        time: '1h',
+        summary: 'Configure GPU and dependencies.',
+      },
+      {
+        title: 'Dataset cleaning',
+        time: '1h',
+        summary: 'Remove noisy samples from training set.',
+      },
+    ],
   },
 ];
 
