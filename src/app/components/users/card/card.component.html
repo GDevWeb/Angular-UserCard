@@ -1,5 +1,5 @@
 <div id="grid" class="main-grid">
-  @for (user of userList; track $index) {
+  @if (userList.length > 0) { @for (user of userList; track $index) {
   <div #userCard class="user-card">
     <img
       [src]="user.imgURL"
@@ -63,19 +63,33 @@
         </div>
       </section>
     </div>
-    <section>
-      <h3>Buttons</h3>
-      <button (click)="greetUser($index)" type="button" class="btn-primary">
+    <section class="flex flex-wrap items-center justify-evenly">
+      <h3 class="w-full">Buttons</h3>
+      <button
+        (click)="greetUser($index)"
+        type="button"
+        class="btn-primary my-4"
+      >
         Greet
       </button>
       <button
         (click)="toggleCardContent($index)"
         type="button"
-        class="btn-primary"
+        class="btn-primary my-4"
       >
         {{ isCardContentVisibility($index) ? "Hide" : "Show" }}
       </button>
+
+      <button
+        (click)="handleDeleteUser(user.id)"
+        class="btn-danger"
+        type="button"
+      >
+        Delete
+      </button>
     </section>
   </div>
+  } }@else {
+  <h2>🙇The userList is empty!</h2>
   }
 </div>

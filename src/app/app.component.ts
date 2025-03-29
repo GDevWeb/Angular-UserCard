@@ -12,7 +12,17 @@ import { CardComponent } from './components/users/card/card.component';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  @Input() usersList: User[] = users;
+  @Input() userList: User[] = users;
+
+  onDeleteUser(userId: number) {
+    const indexToDelete = this.userList.findIndex((user) => user.id === userId);
+    const user = this.userList[indexToDelete];
+    console.log(user.fname, 'had been deleted');
+
+    const updatedList = this.userList.filter((u) => u.id !== user.id);
+
+    return (this.userList = updatedList);
+  }
 }
 
 /* 
@@ -31,8 +41,16 @@ export class AppComponent {
       ✅handle the the value for property:
        >✅account>status
        >✅account>subscription
+
 *** Event ***
 ***@Output()***
-6. create a function that toggles the card-content 
+6.  ✅create a function that toggles the card-content 
+    ✅create a function to delete an user
 
+*** services ***
+7.create a user.service
+  > get
+  > add
+  > update
+  > delete
 */
