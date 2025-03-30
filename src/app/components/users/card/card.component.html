@@ -21,13 +21,49 @@
         <span>{{ user.genre ? "🚺women" : "🚹men" }}</span>
       </p>
     </section>
+    <section>
+      <h3>Job</h3>
+      <p>
+        <span>{{ user.job }}</span>
+      </p>
+    </section>
+    <section
+      id="tasks"
+      [hidden]="!isCardContentVisibility($index)"
+      class="border-b-2"
+      #tasks
+    >
+      <h3>Tasks</h3>
+      @if (user.tasks.length > 0) {
+
+      <ul class="flex flex-col gap-4 justify-evenly">
+        @for (task of user.tasks.slice(0,3); track $index) {
+        <li>
+          <h3>{{ task.title }}</h3>
+          <p>
+            <strong>Time required:</strong> <time> {{ task.time }}</time>
+          </p>
+
+          <p><strong>Summary: </strong>{{ task.summary }}</p>
+
+          <div class="inputGroup">
+            <label for="">{{ true ? "Completed" : "Pending" }}</label>
+            <input type="checkbox" name="" id="" title="Mark as completed" />
+          </div>
+        </li>
+        }
+      </ul>
+      }@else {
+      <h2>Not tasks for the moment</h2>
+      }
+    </section>
     <div
       id="card-content"
       [hidden]="!isCardContentVisibility($index)"
       class="w-full flex flex-col gap-4 items-start justify-evenly"
     >
-      <section>
-        <h3>Skills</h3>
+      <section class="w-full">
+        <h3 class="w-full text-center">Skills</h3>
         <ul>
           @for (skill of user.skills; track $index) {
           <li>➡️{{ skill }}</li>
@@ -66,18 +102,11 @@
     <section class="flex flex-wrap items-center justify-evenly">
       <h3 class="w-full">Buttons</h3>
       <button
-        (click)="greetUser($index)"
-        type="button"
-        class="btn-primary my-4"
-      >
-        Greet
-      </button>
-      <button
         (click)="toggleCardContent($index)"
         type="button"
         class="btn-primary my-4"
       >
-        {{ isCardContentVisibility($index) ? "Hide" : "Show" }}
+        {{ isCardContentVisibility($index) ? "Hide" : "Show Details" }}
       </button>
 
       <button

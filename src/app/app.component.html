@@ -1,5 +1,9 @@
 <app-header />
 <main>
-  <app-card [userList]="userList" (deleteUser)="onDeleteUser($event)" />
+  <app-filter (filterUserList)="onFilterUserList($event)" />
+  <app-card
+    [userList]="filteredUserList.length ? filteredUserList : userList"
+    (deleteUser)="onDeleteUser($event)"
+  />
 </main>
 <app-footer />
