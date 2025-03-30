@@ -27,10 +27,17 @@
         <span>{{ user.job }}</span>
       </p>
     </section>
-    <section id="tasks" [hidden]="!isCardContentVisibility($index)" #tasks>
+    <section
+      id="tasks"
+      [hidden]="!isCardContentVisibility($index)"
+      class="border-b-2"
+      #tasks
+    >
       <h3>Tasks</h3>
+      @if (user.tasks.length > 0) {
+
       <ul class="flex flex-col gap-4 justify-evenly">
-        @for (task of user.tasks; track $index) {
+        @for (task of user.tasks.slice(0,3); track $index) {
         <li>
           <h3>{{ task.title }}</h3>
           <p>
@@ -46,14 +53,17 @@
         </li>
         }
       </ul>
+      }@else {
+      <h2>Not tasks for the moment</h2>
+      }
     </section>
     <div
       id="card-content"
       [hidden]="!isCardContentVisibility($index)"
       class="w-full flex flex-col gap-4 items-start justify-evenly"
     >
-      <section>
-        <h3>Skills</h3>
+      <section class="w-full">
+        <h3 class="w-full text-center">Skills</h3>
         <ul>
           @for (skill of user.skills; track $index) {
           <li>➡️{{ skill }}</li>
