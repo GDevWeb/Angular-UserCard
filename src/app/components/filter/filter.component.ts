@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { User } from '../../../../types/user.type';
+import { type User } from '../../../../types/user.type';
 @Component({
   selector: 'app-filter',
   imports: [],
@@ -8,13 +8,13 @@ import { User } from '../../../../types/user.type';
 })
 export class FilterComponent {
   @Input() filteredUserList!: User[];
-  @Output() filterUserList = new EventEmitter<string>();
+  @Output() filterChanged = new EventEmitter<string>();
 
-  handleFilterUserList(event: Event): void {
+  handleFilterUserList(event: Event, value?: string): void {
     const target = event.target as HTMLInputElement | null;
 
     if (target) {
-      this.filterUserList.emit(target.value);
+      this.filterChanged.emit(target.value);
     }
   }
 }

@@ -24,6 +24,7 @@ export interface User {
     subscription: Subscription;
   };
   tasks: {
+    id: number;
     title: string;
     time: string;
     summary: string;

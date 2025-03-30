@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import users from '../../data/MOCK_USERS';
-import { User } from '../../types/user.type';
+import { type User } from '../../types/user.type';
 import { FilterComponent } from './components/filter/filter.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { HeaderComponent } from './components/layout/header/header.component';
@@ -17,22 +17,39 @@ export class AppComponent {
   @Input() filteredUserList: User[] = [];
 
   onDeleteUser(userId: number) {
-    const indexToDelete = this.userList.findIndex((user) => user.id === userId);
-    const user = this.userList[indexToDelete];
-    console.log(user.fname, 'had been deleted');
+    const validationMessage = confirm(
+      `Dou you want really delete ${this.userList[userId].fname} ${this.userList[userId].lname}?`
+    );
 
-    const updatedList = this.userList.filter((u) => u.id !== user.id);
+    if (validationMessage) {
+      const indexToDelete = this.userList.findIndex(
+        (user) => user.id === userId
+      );
+      const user = this.userList[indexToDelete];
+      console.log(user.fname, 'had been deleted');
 
-    return (this.userList = updatedList);
+      const updatedList = this.userList.filter((u) => u.id !== user.id);
+
+      return (this.userList = updatedList);
+    } else {
+      return;
+    }
   }
 
   onFilterUserList(filterValue: string): void {
+    const filterValueCleaned = filterValue.toLowerCase();
     this.filteredUserList = this.userList.filter(
       (user) =>
-        user.fname.toLowerCase().includes(filterValue.toLowerCase()) ||
-        user.lname.toLowerCase().includes(filterValue.toLowerCase())
+        user.fname.toLowerCase().includes(filterValueCleaned) ||
+        user.lname.toLowerCase().includes(filterValueCleaned) ||
+        user.job.toLowerCase().includes(filterValueCleaned)
     );
     console.log('From parent', filterValue);
+  }
+
+  /* *** Handle tasks*** */
+  onCompleteTask(taskId: number) {
+    console.log('From parent component', taskId);
   }
 }
 
@@ -55,14 +72,14 @@ export class AppComponent {
       >✅account>subscription    
   @Computed()
   handle a filter, filtering:
-    > name
+    > ✅name
     > account_status
     > subscription: states
 
 6.  >conditionally render data :
             >✅@if @else ...
             >✅to fix the rendering of card on user.account.status from enum
-            > fix the checkbox for the tasklist
+            > tasklist, fix the checkbox 
             
 *** services ***
 7.create a user.service

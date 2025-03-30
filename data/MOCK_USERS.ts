@@ -17,11 +17,13 @@ const users: User[] = [
     },
     tasks: [
       {
+        id: 0,
         title: 'Fix navbar bug',
         time: '2h',
         summary: 'Resolve mobile menu collapse issue.',
       },
       {
+        id: 1,
         title: 'Code review',
         time: '1h',
         summary: 'Review PRs from junior devs.',
@@ -44,16 +46,19 @@ const users: User[] = [
     },
     tasks: [
       {
+        id: 0,
         title: 'User interviews',
         time: '3h',
         summary: 'Conduct sessions with 5 users.',
       },
       {
+        id: 1,
         title: 'Wireframe updates',
         time: '2h',
         summary: 'Revise homepage layout.',
       },
       {
+        id: 2,
         title: 'Design system sync',
         time: '1h',
         summary: 'Align button styles across screens.',
@@ -76,21 +81,25 @@ const users: User[] = [
     },
     tasks: [
       {
+        id: 0,
         title: 'Model tuning',
         time: '2.5h',
         summary: 'Optimize accuracy of prediction model.',
       },
       {
+        id: 1,
         title: 'Data cleaning',
         time: '1h',
         summary: 'Handle null values and outliers.',
       },
       {
+        id: 2,
         title: 'Monthly report',
         time: '1h',
         summary: 'Summarize KPI trends for leadership.',
       },
       {
+        id: 3,
         title: 'Script automation',
         time: '0.5h',
         summary: 'Automate daily ETL jobs.',
@@ -113,11 +122,13 @@ const users: User[] = [
     },
     tasks: [
       {
+        id: 0,
         title: 'SEO Audit',
         time: '1.5h',
         summary: 'Analyze performance of blog posts.',
       },
       {
+        id: 1,
         title: 'Ad campaign draft',
         time: '2h',
         summary: 'Create draft for summer sale.',
@@ -156,11 +167,13 @@ const users: User[] = [
     },
     tasks: [
       {
+        id: 0,
         title: 'API refactor',
         time: '2h',
         summary: 'Improve structure for maintainability.',
       },
       {
+        id: 1,
         title: 'PostgreSQL migration',
         time: '1.5h',
         summary: 'Migrate old schemas to new ones.',
@@ -183,16 +196,19 @@ const users: User[] = [
     },
     tasks: [
       {
+        id: 0,
         title: 'Sprint planning',
         time: '1h',
         summary: 'Prepare board for next sprint.',
       },
       {
+        id: 1,
         title: 'Client call',
         time: '1.5h',
         summary: 'Discuss roadmap with stakeholders.',
       },
       {
+        id: 2,
         title: 'Backlog grooming',
         time: '1h',
         summary: 'Refine user stories.',
@@ -215,11 +231,13 @@ const users: User[] = [
     },
     tasks: [
       {
+        id: 0,
         title: 'Regression testing',
         time: '2h',
         summary: 'Run full test suite on staging.',
       },
       {
+        id: 1,
         title: 'Bug triage',
         time: '1h',
         summary: 'Verify and categorize open tickets.',
@@ -242,6 +260,7 @@ const users: User[] = [
     },
     tasks: [
       {
+        id: 0,
         title: 'Pen test report',
         time: '3h',
         summary: 'Document vulnerabilities and patches.',
@@ -264,21 +283,25 @@ const users: User[] = [
     },
     tasks: [
       {
+        id: 0,
         title: 'Model training',
         time: '3h',
         summary: 'Run training for new image dataset.',
       },
       {
+        id: 1,
         title: 'Conference paper',
         time: '2h',
         summary: 'Write abstract and methodology.',
       },
       {
+        id: 2,
         title: 'Experiment setup',
         time: '1h',
         summary: 'Configure GPU and dependencies.',
       },
       {
+        id: 3,
         title: 'Dataset cleaning',
         time: '1h',
         summary: 'Remove noisy samples from training set.',
