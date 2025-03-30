@@ -1,9 +1,10 @@
 <app-header />
 <main>
-  <app-filter (filterUserList)="onFilterUserList($event)" />
+  <app-filter (filterChanged)="onFilterUserList($event)" />
   <app-card
     [userList]="filteredUserList.length ? filteredUserList : userList"
     (deleteUser)="onDeleteUser($event)"
+    (completedTask)="onCompleteTask($event)"
   />
 </main>
 <app-footer />

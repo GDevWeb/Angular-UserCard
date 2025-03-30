@@ -1,6 +1,6 @@
 <div id="grid" class="main-grid">
   @if (userList.length > 0) { @for (user of userList; track $index) {
-  <div #userCard class="user-card">
+  <div #userCard class="user-card" (click)="getUserId(user.id)">
     <img
       [src]="user.imgURL"
       [alt]="`Photo of ${user.fname} ${user.lname}`"
@@ -47,8 +47,13 @@
           <p><strong>Summary: </strong>{{ task.summary }}</p>
 
           <div class="inputGroup">
-            <label for="">{{ true ? "Completed" : "Pending" }}</label>
-            <input type="checkbox" name="" id="" title="Mark as completed" />
+            <button
+              type="button"
+              (click)="selectedUserTask(task.id)"
+              class="valid underline hover:cursor-pointer"
+            >
+              Completed
+            </button>
           </div>
         </li>
         }
