@@ -28,5 +28,6 @@ export interface User {
     title: string;
     time: string;
     summary: string;
+    status: boolean;
   }[];
 }

@@ -16,24 +16,25 @@ export class AppComponent {
   @Input() userList: User[] = users;
   @Input() filteredUserList: User[] = [];
 
+  /* *** Utils*** */
+  userId!: number;
+
+  onSelectedUserId(userId: number) {
+    this.userId = userId;
+
+    console.log(`[AppComponent] - selected userId:`, userId);
+  }
+
   onDeleteUser(userId: number) {
-    const validationMessage = confirm(
-      `Dou you want really delete ${this.userList[userId].fname} ${this.userList[userId].lname}?`
+    const userToDelete = this.userList.find((user) => user.id === userId);
+    if (!userToDelete) return;
+
+    const confirmation = confirm(
+      `Do you really want to delete ${userToDelete.fname} ${userToDelete.lname}?`
     );
+    if (!confirmation) return;
 
-    if (validationMessage) {
-      const indexToDelete = this.userList.findIndex(
-        (user) => user.id === userId
-      );
-      const user = this.userList[indexToDelete];
-      console.log(user.fname, 'had been deleted');
-
-      const updatedList = this.userList.filter((u) => u.id !== user.id);
-
-      return (this.userList = updatedList);
-    } else {
-      return;
-    }
+    this.userList = this.userList.filter((u) => u.id !== userId);
   }
 
   onFilterUserList(filterValue: string): void {
@@ -49,7 +50,31 @@ export class AppComponent {
 
   /* *** Handle tasks*** */
   onCompleteTask(taskId: number) {
-    console.log('From parent component', taskId);
+    const taskToDelete = this.userList[this.userId].tasks.filter(
+      (task) => task.id !== taskId
+    );
+
+    if (!taskToDelete) return;
+
+    const confirmation = confirm(
+      `Do you really want to delete ${taskToDelete[taskId].title}`
+    );
+
+    if (confirmation) {
+      const user = this.userList.find((u) => u.id === this.userId);
+      if (user) {
+        user.tasks = user.tasks.filter((task) => task.id !== taskId);
+      }
+
+      /* 
+      For the future version
+      switch !status
+      only remove from ui not delete for consulting
+      */
+      return;
+    } else {
+      return this.userList;
+    }
   }
 }
 
@@ -79,7 +104,7 @@ export class AppComponent {
 6.  >conditionally render data :
             >✅@if @else ...
             >✅to fix the rendering of card on user.account.status from enum
-            > tasklist, fix the checkbox 
+            >✅tasklist, fix the checkbox 
             
 *** services ***
 7.create a user.service

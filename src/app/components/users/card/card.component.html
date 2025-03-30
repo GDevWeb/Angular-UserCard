@@ -38,7 +38,7 @@
 
       <ul class="flex flex-col gap-4 justify-evenly">
         @for (task of user.tasks.slice(0,3); track $index) {
-        <li>
+        <li class="my-4 p-4 border-b-2 border-gray-400">
           <h3>{{ task.title }}</h3>
           <p>
             <strong>Time required:</strong> <time> {{ task.time }}</time>
@@ -46,11 +46,16 @@
 
           <p><strong>Summary: </strong>{{ task.summary }}</p>
 
-          <div class="inputGroup">
+          <p>
+            <strong>Status:</strong
+            >{{ task.status ? "✔️ Completed " : "⏳ In progress " }}
+          </p>
+
+          <div class="inputGroup mt-4">
             <button
               type="button"
               (click)="selectedUserTask(task.id)"
-              class="valid underline hover:cursor-pointer"
+              class="text-green-600 bg-transparent border border-green-500 px-2 rounded hover:bg-green-100"
             >
               Completed
             </button>
