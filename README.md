@@ -1,60 +1,24 @@
-# SandboxMax
+# Sandbox Angular – UserCard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
+> Mini-projets Angular réalisés dans le cadre de mon apprentissage (2025).  
+> Focus sur les composants, services, interactions, et bonnes pratiques Angular.
 
-## Development server
+## Objectifs
 
-To start a local development server, run:
+- Comprendre et maîtriser les concepts Angular 2+ (components, services, inputs/outputs, pipes, routing, etc.)
+- Construire des éléments UI réutilisables (ex : UserCard, modales, listes filtrées)
+- Appliquer Tailwind CSS, gestion d’état, interactions utilisateur
 
-```bash
-ng serve
-```
+## Contenu
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+| Composant          | Description                                                | Concepts Angular                |
+| ------------------ | ---------------------------------------------------------- | ------------------------------- |
+| UserCardComponent  | Affichage dynamique d’utilisateurs avec détails togglables | `@Input()`, `*ngIf`, `*ngFor`   |
+| DeleteConfirmModal | Suppression avec confirmation                              | `@Output()`, EventEmitter       |
+| RoleFilter         | Filtrage conditionnel                                      | `pipe`, `*ngIf`, gestion d’état |
 
-## Code scaffolding
+## 📅 Évolution prévue
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-# Angular-Exercises
+- [ ] Ajout du routing
+- [ ] Appel d’API fictive (JSON server)
+- [ ] Auth / Guard / Lazy Loading (avril 2025)
