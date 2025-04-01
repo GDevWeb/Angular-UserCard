@@ -50,31 +50,21 @@ export class AppComponent {
 
   /* *** Handle tasks*** */
   onCompleteTask(taskId: number) {
-    const taskToDelete = this.userList[this.userId].tasks.filter(
-      (task) => task.id !== taskId
-    );
+    const user = this.userList[this.userId];
+    if (!user) return;
 
+    const taskToDelete = user.tasks.find((task) => task.id === taskId);
     if (!taskToDelete) return;
 
     const confirmation = confirm(
-      `Do you really want to delete ${taskToDelete[taskId].title}`
+      `Do you really want to delete the task "${taskToDelete.title}"?`
     );
 
     if (confirmation) {
-      const user = this.userList.find((u) => u.id === this.userId);
-      if (user) {
-        user.tasks = user.tasks.filter((task) => task.id !== taskId);
-      }
-
-      /* 
-      For the future version
-      switch !status
-      only remove from ui not delete for consulting
-      */
-      return;
-    } else {
-      return this.userList;
+      user.tasks = user.tasks.filter((task) => task.id !== taskId);
     }
+
+    return this.userList;
   }
 }
 
