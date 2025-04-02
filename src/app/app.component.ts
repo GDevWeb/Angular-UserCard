@@ -84,8 +84,11 @@ export class AppComponent {
       >✅create a simple function greetUser that displays the name and some details
       ✅handle the the value for property:
       >✅account>status
-      >✅account>subscription    
-  @Computed()
+      >✅account>subscription 
+
+  ℹ️@Computed()
+  > use computed at least one time
+
   handle a filter, filtering:
     > ✅name
     > account_status
@@ -96,8 +99,14 @@ export class AppComponent {
             >✅to fix the rendering of card on user.account.status from enum
             >✅tasklist, fix the checkbox 
             
+*** Form ***
+7.create a form handling add a : 
+  > user
+   >task
+    select he user and add the tasks
+       
 *** services ***
-7.create a user.service
+8.create a user.service
   > get
   > add
   > update
