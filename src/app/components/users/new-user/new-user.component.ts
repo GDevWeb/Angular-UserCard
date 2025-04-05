@@ -15,10 +15,13 @@ export class NewUserComponent {
 
   selectedJob = '';
   selectedSkill = '';
+  hobby = '';
 
   /* *** Skills picker *** */
   selectedSkills: string[] = [];
   pickedSkillsList: string[] = [];
+  hobbiesList: string[] = [];
+  /* ***Hobbies*** */
 
   /*  ***Modal *** */
   onCancel() {
@@ -26,7 +29,6 @@ export class NewUserComponent {
   }
 
   /* ***Form*** */
-
   getSelectedJob(event: Event): void {
     const target = event.target as HTMLSelectElement;
     const selectedValue = target.value;
@@ -43,6 +45,7 @@ export class NewUserComponent {
     }
   }
 
+  /* ***Skills*** */
   handleSelectedSkills(event: Event): void {
     const target = event.target as HTMLSelectElement;
     const selectedValue = target.value;
@@ -64,6 +67,28 @@ export class NewUserComponent {
       console.log(`Added skill: ${this.pickedSkillsList}`);
     } else {
       console.log(`Skill already added or invalid`);
+    }
+  }
+
+  removePickedSkill(skillIndex: number): void {
+    if (skillIndex >= 0 && skillIndex < this.pickedSkillsList.length) {
+      const removedSkill = this.pickedSkillsList[skillIndex];
+      this.pickedSkillsList.splice(skillIndex, 1);
+      console.log(`Removed: ${removedSkill}`);
+    } else {
+      console.warn(`Invalid skill index: ${skillIndex}`);
+    }
+  }
+
+  /* ***Hobbies*** */
+  addHobby(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const value = target.value;
+
+    if (value.trim() !== '') {
+      this.hobby = value;
+      this.hobbiesList.push(this.hobby);
+      console.log(this.hobbiesList);
     }
   }
 

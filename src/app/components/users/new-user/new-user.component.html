@@ -3,7 +3,7 @@
   (click)="onCancel()"
   class="w-xl flex flex-col gap-4 p-4 m-4 bg-slate-700 rounded-sm text-white"
 >
-  <form class="w-full bg-green-500" class="formGroup">
+  <form class="flex flex-col gap-4">
     <h2>Add a new user</h2>
 
     <!-- ***Identity*** -->
@@ -11,7 +11,7 @@
       <label for="genre">Select your genre</label>
       <select name="genre" id="genre" class="select">
         <option value="men">🚹Men</option>
-        <option value="women">🚺Men</option>
+        <option value="women">🚺Women</option>
       </select>
     </div>
 
@@ -39,6 +39,7 @@
       <label for="age">Age</label>
       <input type="number" name="age" id="age" placeholder="input your age" />
     </div>
+
     <div class="intputGroup">
       <label for="age">Age</label>
       <input type="number" name="age" id="age" placeholder="input your age" />
@@ -77,20 +78,61 @@
           <option [value]="skill.name">{{ skill.name }}</option>
           }
         </select>
-        <div class="w-full">
-          <button type="button" (click)="addPickedSkills()">Add skills</button>
+        <div class="w-full flex items-center justify-end">
+          <button type="button" (click)="addPickedSkills()" class="btn-warning">
+            Add skills
+          </button>
         </div>
       </div>
 
-      <div class="border-t-2 m-4">
-        <h3 class="text-xl text-center mt-4">
-          You had added the following skills:
-        </h3>
-        <ul>
+      <div id="pickedSkillsList">
+        <h3>You had added the following skills:</h3>
+        <ul class="w-full flex flex-col items-center justify-evenly gap-4">
           @for (skill of pickedSkillsList; track $index) {
-          <li>➡️{{ skill }}</li>
+          <li class="flex items-center justify-center gap-4">
+            <p class="w-full">➡️{{ skill }}</p>
+            <span
+              class="w-full"
+              (click)="removePickedSkill($index)"
+              class="cursor-pointer"
+              >❌Remove</span
+            >
+          </li>
           }
         </ul>
+      </div>
+    </section>
+
+    <section id="hobbies">
+      <h3>Your hobbies</h3>
+      <div class="inputGroup">
+        <label for="hobbies">Hobbies</label>
+        <input
+          type="text"
+          name="hobbies"
+          id="hobbies"
+          placeholder="input your hobbies"
+        />
+        <div class="w-full flex items-center justify-end">
+          <button type="button" (click)="addHobby($event)" class="btn-warning">
+            Add hobby
+          </button>
+        </div>
+        <div id="hobbiesList">
+          <ul class="w-full flex flex-col items-center justify-evenly gap-4">
+            @for (hobby of hobbiesList; track $index) {
+            <li class="flex items-center justify-center gap-4">
+              <p class="w-full">➡️{{ hobby }}</p>
+              <span
+                class="w-full"
+                (click)="removePickedSkill($index)"
+                class="cursor-pointer"
+                >❌Remove</span
+              >
+            </li>
+            }
+          </ul>
+        </div>
       </div>
     </section>
   </form>

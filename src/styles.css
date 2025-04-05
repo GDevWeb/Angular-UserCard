@@ -42,6 +42,9 @@ h2 {
   @apply text-2xl text-center font-bold mb-6;
 }
 
+h3 {
+  @apply text-xl text-center font-bold mb-4;
+}
 span {
   @apply font-thin;
 }
@@ -60,10 +63,13 @@ main {
   @apply flex flex-wrap items-center justify-end gap-4 text-center;
 }
 
-.label {
-  @apply block mb-2 text-sm font-medium text-gray-900 dark:text-white;
+label {
+  @apply w-full block mb-2 text-sm font-medium text-gray-900 dark:text-white;
 }
 
+input {
+  @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+}
 .select {
   @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
 }
