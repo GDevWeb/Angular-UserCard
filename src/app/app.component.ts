@@ -1,19 +1,30 @@
-import { Component, Input } from '@angular/core';
-import users from '../../data/MOCK_USERS';
+import { Component, inject, Input } from '@angular/core';
+import MOCK_USERS from '../../data/MOCK_USERS';
 import { type User } from '../../types/user.type';
 import { FilterComponent } from './components/filter/filter.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { CardComponent } from './components/users/card/card.component';
+import { UserService } from './services/user-service.service';
+import { NewUserComponent } from './components/users/new-user/new-user.component';
 
 @Component({
   selector: 'app-root',
-  imports: [CardComponent, HeaderComponent, FooterComponent, FilterComponent],
+  imports: [
+    CardComponent,
+    HeaderComponent,
+    FooterComponent,
+    FilterComponent,
+    NewUserComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  @Input() userList: User[] = users;
+  userService: UserService = inject(UserService);
+  // @Input() userList = this.userService.getUsers;
+  @Input() userList = MOCK_USERS;
+
   @Input() filteredUserList: User[] = [];
 
   /* *** Utils*** */
@@ -84,8 +95,10 @@ export class AppComponent {
       >✅create a simple function greetUser that displays the name and some details
       ✅handle the the value for property:
       >✅account>status
-      >✅account>subscription    
+      >✅account>subscription 
+
   @Computed()
+
   handle a filter, filtering:
     > ✅name
     > account_status
@@ -96,8 +109,13 @@ export class AppComponent {
             >✅to fix the rendering of card on user.account.status from enum
             >✅tasklist, fix the checkbox 
             
+7. >form
+  - two ways data binding [{}] as banana box
+  - add an user
+  - add a task
+
 *** services ***
-7.create a user.service
+8.create a user.service
   > get
   > add
   > update

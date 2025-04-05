@@ -1,6 +1,6 @@
 import { Genre, Subscription, User } from '../types/user.type';
 
-const users: User[] = [
+const MOCK_USERS: User[] = [
   {
     id: 0,
     genre: Genre.male,
@@ -333,4 +333,4 @@ const users: User[] = [
   },
 ];
 
-export default users;
+export default MOCK_USERS;

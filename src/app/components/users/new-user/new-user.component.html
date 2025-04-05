@@ -1,0 +1,97 @@
+<div
+  class="backdrop"
+  (click)="onCancel()"
+  class="w-xl flex flex-col gap-4 p-4 m-4 bg-slate-700 rounded-sm text-white"
+>
+  <form class="w-full bg-green-500" class="formGroup">
+    <h2>Add a new user</h2>
+
+    <!-- ***Identity*** -->
+    <div class="intputGroup">
+      <label for="genre">Select your genre</label>
+      <select name="genre" id="genre" class="select">
+        <option value="men">🚹Men</option>
+        <option value="women">🚺Men</option>
+      </select>
+    </div>
+
+    <div class="intputGroup">
+      <label for="fname">First name</label>
+      <input
+        type="text"
+        name="fname"
+        id="fname"
+        placeholder="input the first name"
+      />
+    </div>
+
+    <div class="intputGroup">
+      <label for="lname">First name</label>
+      <input
+        type="text"
+        name="lname"
+        id="lname"
+        placeholder="input the last name"
+      />
+    </div>
+
+    <div class="intputGroup">
+      <label for="age">Age</label>
+      <input type="number" name="age" id="age" placeholder="input your age" />
+    </div>
+    <div class="intputGroup">
+      <label for="age">Age</label>
+      <input type="number" name="age" id="age" placeholder="input your age" />
+    </div>
+    <div class="inputGroup">
+      <label for="profileImage">Select your profile image</label>
+      <input type="file" name="profileImage" id="profileImage" />
+    </div>
+
+    <!-- ***Job*** -->
+    <div class="inputGroup">
+      <label for="selectJob">Select your job</label>
+      <select
+        name="selectJob"
+        id="selectJob"
+        class="select"
+        (change)="getSelectedJob($event)"
+      >
+        @for (job of jobList; track $index) {
+        <option [value]="job.name">{{ job.name }}</option>
+        }
+      </select>
+    </div>
+
+    <section id="skills">
+      <!-- ***Skills*** -->
+      <div class="inputGroup flex-wrap">
+        <label for="selectSkills">Select your skills</label>
+        <select
+          name="selectJob"
+          id="selectJob"
+          class="select"
+          (change)="handleSelectedSkills($event)"
+        >
+          @for (skill of skillsList; track $index) {
+          <option [value]="skill.name">{{ skill.name }}</option>
+          }
+        </select>
+        <div class="w-full">
+          <button type="button" (click)="addPickedSkills()">Add skills</button>
+        </div>
+      </div>
+
+      <div class="border-t-2 m-4">
+        <h3 class="text-xl text-center mt-4">
+          You had added the following skills:
+        </h3>
+        <ul>
+          @for (skill of pickedSkillsList; track $index) {
+          <li>➡️{{ skill }}</li>
+          }
+        </ul>
+      </div>
+    </section>
+  </form>
+</div>

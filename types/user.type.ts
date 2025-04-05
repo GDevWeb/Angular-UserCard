@@ -9,6 +9,11 @@ export enum Subscription {
   gold,
 }
 
+export interface Job {
+  id: number;
+  name: string;
+}
+
 export interface User {
   id: number;
   genre: Genre;

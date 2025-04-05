@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
+import MOCK_USERS from '../../../data/MOCK_USERS';
+import { type User } from '../../../types/user.type';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class UserServiceService {
+export class UserService {
+  private users: User[] = [...MOCK_USERS];
 
-  constructor() { }
+  getUsers(): User[] {
+    return this.users;
+  }
 }
