@@ -5,16 +5,19 @@
     class="w-xl p-4 mx-auto text-white bg-slate-500 rounded-lg drop-shadow-xl"
   >
     <h2>Add an user</h2>
-    <!-- Identity -->
     <section id="identity">
       <div class="inputGroup">
         <label for="genre">Genre</label>
         <select formControlName="genre" id="genre">
           <option value="">Select a value</option>
-          @for (genre of genre; track $index) {
+          @for (genre of genreList; track $index) {
           <option [value]="genre.name">{{ genre.name }}</option>
           }
         </select>
+        @if (newUserForm.get('genre')?.invalid &&
+        newUserForm.get('genre')?.touched) {
+        <div class="error">Genre is required</div>
+        }
       </div>
       <div class="inputGroup">
         <label for="fname">First name</label>
@@ -24,15 +27,37 @@
           id="fname"
           placeholder="input your first name"
         />
+        @if (newUserForm.get('fname')?.invalid &&
+        newUserForm.get('fname')?.touched) { @if
+        (newUserForm.get('fname')?.errors?.['required']) {
+        <div class="error">First name is required.</div>
+        } @else if (newUserForm.get('fname')?.errors?.['minlength']) {
+        <div class="error">First name must be at least 2 characters long.</div>
+        } @else if (newUserForm.get('fname')?.errors?.['maxlength']) {
+        <div class="error">
+          First name cannot be more than 64 characters long.
+        </div>
+        } }
       </div>
       <div class="inputGroup">
-        <label for="age">Last name</label>
+        <label for="lname">Last name</label>
         <input
           type="text"
           formControlName="lname"
           id="lname"
           placeholder="input your last name"
         />
+        @if (newUserForm.get('lname')?.invalid &&
+        newUserForm.get('lname')?.touched) { @if
+        (newUserForm.get('lname')?.errors?.['required']) {
+        <div class="error">Last name is required.</div>
+        } @else if (newUserForm.get('lname')?.errors?.['minlength']) {
+        <div class="error">Last name must be at least 2 characters long.</div>
+        } @else if (newUserForm.get('lname')?.errors?.['maxlength']) {
+        <div class="error">
+          Last name cannot be more than 64 characters long.
+        </div>
+        } }
       </div>
       <div class="inputGroup">
         <label for="age">Age</label>
@@ -42,9 +67,14 @@
           id="age"
           placeholder="input your age"
         />
+        @if (newUserForm.get('age')?.invalid && newUserForm.get('age')?.touched)
+        { @if (newUserForm.get('age')?.errors?.['required']) {
+        <div class="error">Age is required.</div>
+        } @else if (newUserForm.get('age')?.errors?.['min']) {
+        <div class="error">Age must be at least 18.</div>
+        } }
       </div>
     </section>
-    <!-- ProfileImage -->
     <section id="profileImage">
       <div class="inputGroup">
         <label for="profileImage">Upload your profile image</label>
@@ -52,7 +82,6 @@
       </div>
     </section>
 
-    <!-- Job -->
     <section id="job">
       <div class="inputGroup">
         <label for="job">Select your job</label>
@@ -62,14 +91,20 @@
           <option [value]="job.name">{{ job.name }}</option>
           }
         </select>
+        @if (newUserForm.get('job')?.invalid && newUserForm.get('job')?.touched)
+        {
+        <div class="error">Job is required.</div>
+        }
       </div>
     </section>
 
-    <!-- Skills -->
     <section id="skills">
       <div class="inputGroup">
         <label for="skills">Add some skills</label>
-        <select id="skills" (change)="selectSkill = $any($event.target).value">
+        <select
+          id="skills"
+          (change)="selectedSkill = $any($event.target).value"
+        >
           <option value="">-- Select a skill --</option>
           @for (skill of skillsList; track $index) {
           <option [value]="skill.name">{{ skill.name }}</option>
@@ -87,9 +122,9 @@
     @if (skills.controls.length > 0) {
     <section id="previewSkills">
       <h3>Preview your skills list</h3>
-      <ul>
+      <ul class="formList">
         @for (skill of skills.controls; track $index) {
-        <li>
+        <li class="formListElement">
           {{ skill.value }}
           <button
             class="w-full"
@@ -106,31 +141,28 @@
     </section>
     }
 
-    <!-- Hobbies -->
     <section id="hobbies">
       <div class="inputGroup">
         <label for="hobbies">Add some hobbies</label>
         <input
           type="text"
-          formControlName="hobbies"
           id="hobby"
+          [value]="hobby"
+          (input)="hobby = $any($event.target).value"
           placeholder="input your hobbies"
-          (change)="hobby = $any($event.target).value"
         />
-        <div class="container-btn w-full p-4 flex items-center justify-end">
-          <button type="button" (click)="addHobby()" class="btn-warning">
-            Add hobby
-          </button>
-        </div>
+        <button type="button" (click)="addHobby()" class="btn-warning">
+          Add hobby
+        </button>
       </div>
     </section>
 
     @if (hobbies.controls.length > 0) {
     <section id="previewHobbies">
       <h3>Preview hobbies list</h3>
-      <ul>
+      <ul class="formList">
         @for (hobby of hobbies.value; track $index) {
-        <li>
+        <li class="formListElement">
           {{ hobby }}
           <button
             class="w-full"

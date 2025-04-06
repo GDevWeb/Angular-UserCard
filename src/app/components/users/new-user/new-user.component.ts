@@ -26,7 +26,7 @@ export class NewUserComponent {
   readonly isOpen: boolean = false;
 
   selectGenre = '';
-  selectSkill = '';
+  selectedSkill = '';
   hobby = '';
 
   selectedSkillsList = [];
@@ -67,11 +67,11 @@ export class NewUserComponent {
 
   /* --Logic-- */
   addSkill(): void {
-    if (this.selectSkill && !this.skills.value.includes(this.selectSkill)) {
-      this.skills.push(new FormControl(this.selectSkill));
-      console.log(this.selectSkill);
+    if (this.selectedSkill && !this.skills.value.includes(this.selectedSkill)) {
+      this.skills.push(new FormControl(this.selectedSkill));
+      console.log(this.selectedSkill);
 
-      this.selectSkill = '';
+      this.selectedSkill = '';
     }
   }
 
@@ -91,10 +91,7 @@ export class NewUserComponent {
     const trimmed = this.hobby.trim();
     if (trimmed && !this.hobbies.value.includes(trimmed)) {
       this.hobbies.push(new FormControl(trimmed));
-
       this.hobby = '';
-
-      console.log(this.hobbies);
     }
   }
 
@@ -113,8 +110,6 @@ export class NewUserComponent {
       this.newUserForm.markAllAsTouched();
     }
   }
-
-  createNewUser() {}
 
   /* ***Modal*** */
   onCancel() {

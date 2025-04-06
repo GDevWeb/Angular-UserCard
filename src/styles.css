@@ -82,11 +82,11 @@ option {
   @apply text-center;
 }
 
-ul {
+.formList {
   @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
 }
 
-li {
+.formListElement {
   @apply p-2 flex items-center justify-center gap-4 border-b-2 border-slate-400;
 }
 /* *** Buttons *** */
@@ -110,6 +110,10 @@ li {
   @apply bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded;
 }
 
+/* ***User feed back*** */
+.error {
+  @apply font-bold text-red-500;
+}
 /* *** Cards *** */
 .user-card {
   @apply min-w-[300px] flex flex-col items-center gap-4 p-4 justify-evenly bg-slate-200 rounded-lg drop-shadow-xl;
