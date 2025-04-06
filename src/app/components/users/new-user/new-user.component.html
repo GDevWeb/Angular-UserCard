@@ -1,139 +1,153 @@
-<div
-  class="backdrop"
-  (click)="onCancel()"
-  class="w-xl flex flex-col gap-4 p-4 m-4 bg-slate-700 rounded-sm text-white"
->
-  <form class="flex flex-col gap-4">
-    <h2>Add a new user</h2>
+<div class="grid-cols-1 flex items-center justify-center">
+  <form
+    [formGroup]="newUserForm"
+    (submit)="handleSubmit()"
+    class="w-xl p-4 mx-auto text-white bg-slate-500 rounded-lg drop-shadow-xl"
+  >
+    <h2>Add an user</h2>
+    <!-- Identity -->
+    <section id="identity">
+      <div class="inputGroup">
+        <label for="genre">Genre</label>
+        <select formControlName="genre" id="genre">
+          <option value="">Select a value</option>
+          @for (genre of genre; track $index) {
+          <option [value]="genre.name">{{ genre.name }}</option>
+          }
+        </select>
+      </div>
+      <div class="inputGroup">
+        <label for="fname">First name</label>
+        <input
+          type="text"
+          formControlName="fname"
+          id="fname"
+          placeholder="input your first name"
+        />
+      </div>
+      <div class="inputGroup">
+        <label for="age">Last name</label>
+        <input
+          type="text"
+          formControlName="lname"
+          id="lname"
+          placeholder="input your last name"
+        />
+      </div>
+      <div class="inputGroup">
+        <label for="age">Age</label>
+        <input
+          type="number"
+          formControlName="age"
+          id="age"
+          placeholder="input your age"
+        />
+      </div>
+    </section>
+    <!-- ProfileImage -->
+    <section id="profileImage">
+      <div class="inputGroup">
+        <label for="profileImage">Upload your profile image</label>
+        <input type="file" formControlName="imgUrl" id="profileImage" />
+      </div>
+    </section>
 
-    <!-- ***Identity*** -->
-    <div class="intputGroup">
-      <label for="genre">Select your genre</label>
-      <select name="genre" id="genre" class="select">
-        <option value="men">🚹Men</option>
-        <option value="women">🚺Women</option>
-      </select>
-    </div>
+    <!-- Job -->
+    <section id="job">
+      <div class="inputGroup">
+        <label for="job">Select your job</label>
+        <select formControlName="job" id="job">
+          <option value="">--Select your job--</option>
+          @for (job of jobList; track $index) {
+          <option [value]="job.name">{{ job.name }}</option>
+          }
+        </select>
+      </div>
+    </section>
 
-    <div class="intputGroup">
-      <label for="fname">First name</label>
-      <input
-        type="text"
-        name="fname"
-        id="fname"
-        placeholder="input the first name"
-      />
-    </div>
-
-    <div class="intputGroup">
-      <label for="lname">First name</label>
-      <input
-        type="text"
-        name="lname"
-        id="lname"
-        placeholder="input the last name"
-      />
-    </div>
-
-    <div class="intputGroup">
-      <label for="age">Age</label>
-      <input type="number" name="age" id="age" placeholder="input your age" />
-    </div>
-
-    <div class="intputGroup">
-      <label for="age">Age</label>
-      <input type="number" name="age" id="age" placeholder="input your age" />
-    </div>
-    <div class="inputGroup">
-      <label for="profileImage">Select your profile image</label>
-      <input type="file" name="profileImage" id="profileImage" />
-    </div>
-
-    <!-- ***Job*** -->
-    <div class="inputGroup">
-      <label for="selectJob">Select your job</label>
-      <select
-        name="selectJob"
-        id="selectJob"
-        class="select"
-        (change)="getSelectedJob($event)"
-      >
-        @for (job of jobList; track $index) {
-        <option [value]="job.name">{{ job.name }}</option>
-        }
-      </select>
-    </div>
-
+    <!-- Skills -->
     <section id="skills">
-      <!-- ***Skills*** -->
-      <div class="inputGroup flex-wrap">
-        <label for="selectSkills">Select your skills</label>
-        <select
-          name="selectJob"
-          id="selectJob"
-          class="select"
-          (change)="handleSelectedSkills($event)"
-        >
+      <div class="inputGroup">
+        <label for="skills">Add some skills</label>
+        <select id="skills" (change)="selectSkill = $any($event.target).value">
+          <option value="">-- Select a skill --</option>
           @for (skill of skillsList; track $index) {
           <option [value]="skill.name">{{ skill.name }}</option>
           }
         </select>
-        <div class="w-full flex items-center justify-end">
-          <button type="button" (click)="addPickedSkills()" class="btn-warning">
-            Add skills
-          </button>
-        </div>
       </div>
 
-      <div id="pickedSkillsList">
-        <h3>You had added the following skills:</h3>
-        <ul class="w-full flex flex-col items-center justify-evenly gap-4">
-          @for (skill of pickedSkillsList; track $index) {
-          <li class="flex items-center justify-center gap-4">
-            <p class="w-full">➡️{{ skill }}</p>
-            <span
-              class="w-full"
-              (click)="removePickedSkill($index)"
-              class="cursor-pointer"
-              >❌Remove</span
-            >
-          </li>
-          }
-        </ul>
+      <div class="container-btn w-full p-4 flex items-center justify-end">
+        <button type="button" (click)="addSkill()" class="btn-warning">
+          Add skill
+        </button>
       </div>
     </section>
 
+    @if (skills.controls.length > 0) {
+    <section id="previewSkills">
+      <h3>Preview your skills list</h3>
+      <ul>
+        @for (skill of skills.controls; track $index) {
+        <li>
+          {{ skill.value }}
+          <button
+            class="w-full"
+            (click)="removeSkills($index)"
+            class="cursor-pointer"
+            type="button"
+            title="remove skill"
+          >
+            ❌Remove
+          </button>
+        </li>
+        }
+      </ul>
+    </section>
+    }
+
+    <!-- Hobbies -->
     <section id="hobbies">
-      <h3>Your hobbies</h3>
       <div class="inputGroup">
-        <label for="hobbies">Hobbies</label>
+        <label for="hobbies">Add some hobbies</label>
         <input
           type="text"
-          name="hobbies"
-          id="hobbies"
+          formControlName="hobbies"
+          id="hobby"
           placeholder="input your hobbies"
+          (change)="hobby = $any($event.target).value"
         />
-        <div class="w-full flex items-center justify-end">
-          <button type="button" (click)="addHobby($event)" class="btn-warning">
+        <div class="container-btn w-full p-4 flex items-center justify-end">
+          <button type="button" (click)="addHobby()" class="btn-warning">
             Add hobby
           </button>
         </div>
-        <div id="hobbiesList">
-          <ul class="w-full flex flex-col items-center justify-evenly gap-4">
-            @for (hobby of hobbiesList; track $index) {
-            <li class="flex items-center justify-center gap-4">
-              <p class="w-full">➡️{{ hobby }}</p>
-              <span
-                class="w-full"
-                (click)="removePickedSkill($index)"
-                class="cursor-pointer"
-                >❌Remove</span
-              >
-            </li>
-            }
-          </ul>
-        </div>
       </div>
     </section>
+
+    @if (hobbies.controls.length > 0) {
+    <section id="previewHobbies">
+      <h3>Preview hobbies list</h3>
+      <ul>
+        @for (hobby of hobbies.value; track $index) {
+        <li>
+          {{ hobby }}
+          <button
+            class="w-full"
+            (click)="removeHobby($index)"
+            class="cursor-pointer"
+            type="button"
+            title="remove skill"
+          >
+            ❌Remove
+          </button>
+        </li>
+        }
+      </ul>
+    </section>
+    }
+    <div class="container-btn w-full p-4 flex items-center justify-center">
+      <button type="submit" class="btn-success">Create</button>
+    </div>
   </form>
 </div>

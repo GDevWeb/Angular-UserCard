@@ -54,6 +54,10 @@ main {
   @apply flex flex-col gap-4 items-center justify-evenly mx-auto my-[15vh];
 }
 
+section {
+  @apply flex flex-col gap-4 border-b-2 border-slate-400 m-4 p-4;
+}
+
 /* ***Form*** */
 .formGroup {
   @apply flex-col shrink items-center justify-center gap-4;
@@ -70,12 +74,20 @@ label {
 input {
   @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
 }
-.select {
+select {
   @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
 }
 
 option {
   @apply text-center;
+}
+
+ul {
+  @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+}
+
+li {
+  @apply p-2 flex items-center justify-center gap-4 border-b-2 border-slate-400;
 }
 /* *** Buttons *** */
 .btn-primary {

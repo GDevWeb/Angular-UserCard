@@ -1,6 +1,12 @@
+export interface GenreI {
+  id: number;
+  name: string;
+}
+
 export enum Genre {
   male,
   female,
+  other,
 }
 
 export enum Subscription {
