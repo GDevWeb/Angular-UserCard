@@ -9,7 +9,7 @@
       <div class="inputGroup">
         <label for="genre">Genre</label>
         <select formControlName="genre" id="genre">
-          <option value="">Select a value</option>
+          <option value="">--Select a value--</option>
           @for (genre of genreList; track $index) {
           <option [value]="genre.name">{{ genre.name }}</option>
           }

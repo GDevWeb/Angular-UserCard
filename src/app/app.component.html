@@ -1,6 +1,6 @@
 <app-header />
 <main>
-  <app-new-user />
+  <app-new-user (addUser)="handleAddUser($event)" />
   <app-filter (filterChanged)="onFilterUserList($event)" />
   <app-card
     [userList]="filteredUserList.length ? filteredUserList : userList"

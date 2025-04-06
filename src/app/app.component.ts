@@ -5,8 +5,8 @@ import { FilterComponent } from './components/filter/filter.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { CardComponent } from './components/users/card/card.component';
-import { UserService } from './services/user-service.service';
 import { NewUserComponent } from './components/users/new-user/new-user.component';
+import { UserService } from './services/user-service.service';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +22,6 @@ import { NewUserComponent } from './components/users/new-user/new-user.component
 })
 export class AppComponent {
   userService: UserService = inject(UserService);
-  // @Input() userList = this.userService.getUsers;
   @Input() userList = MOCK_USERS;
 
   @Input() filteredUserList: User[] = [];
@@ -77,6 +76,12 @@ export class AppComponent {
 
     return this.userList;
   }
+
+  /* *** *** */
+  handleAddUser(newUser: User) {
+    this.userList.push(newUser);
+    console.log('From parent component, addUser', this.userList);
+  }
 }
 
 /* 
@@ -110,8 +115,8 @@ export class AppComponent {
             >✅tasklist, fix the checkbox 
             
 7. >form
-  - two ways data binding [{}] as banana box
-  - add an user
+  - ✅two ways data binding [{}] as banana box
+  - ✅add an user
   - add a task
 
 *** services ***
@@ -120,4 +125,6 @@ export class AppComponent {
   > add
   > update
   > delete
+>localStorage Services
+>Form createUSer Services
 */

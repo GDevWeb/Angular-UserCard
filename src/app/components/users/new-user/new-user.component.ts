@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {
   FormArray,
   FormControl,
@@ -10,7 +10,12 @@ import {
 import { MOCK_GENRE_LIST } from '../../../../../data/MOCK_GENRE_LIST';
 import { MOCK_JOB_LIST } from '../../../../../data/MOCK_JOB_LIST';
 import { MOCK_SKILL_LIST } from '../../../../../data/MOCK_SKILLS';
-import { GenreI } from '../../../../../types/user.type';
+import {
+  type Genre,
+  GenreI,
+  Subscription,
+  User,
+} from '../../../../../types/user.type';
 
 @Component({
   selector: 'app-new-user',
@@ -32,6 +37,8 @@ export class NewUserComponent {
   selectedSkillsList = [];
   selectedHobbiesLIst: string[] = [];
 
+  @Output() addUser = new EventEmitter<User>();
+
   newUserForm = new FormGroup({
     fname: new FormControl('', [
       Validators.required,
@@ -43,8 +50,8 @@ export class NewUserComponent {
       Validators.minLength(2),
       Validators.maxLength(64),
     ]),
-    age: new FormControl(Validators.required, Validators.min(18)),
-    genre: new FormControl('', Validators.required),
+    age: new FormControl(null, [Validators.required, Validators.min(18)]),
+    genre: new FormControl<Genre | null>(null, Validators.required),
     imgUrl: new FormControl(''),
     job: new FormControl('', Validators.required),
     skills: new FormArray([]),
@@ -99,9 +106,30 @@ export class NewUserComponent {
     this.hobbies.removeAt(index);
   }
 
+  /* ***Submitting a new user*** */
   handleSubmit(): void {
     if (this.newUserForm.valid) {
       console.log('User created:', this.newUserForm.value);
+      const formValue = this.newUserForm.value;
+
+      const user: User = {
+        ...formValue,
+        id: this.getRandomId(),
+        genre: formValue.genre as Genre,
+        fname: formValue.fname ?? '',
+        lname: formValue.lname ?? '',
+        age: formValue.age ?? 18,
+        imgURL: `https://randomuser.me/api/portraits/${this.setUrlGenre(
+          formValue.genre?.toString() || 'male'
+        )}/${this.getRandomImgURL()}.jpg`,
+        job: formValue.job ?? '',
+        skills: formValue.skills ?? [],
+        hobbies: formValue.hobbies ?? [],
+        account: { status: true, subscription: Subscription.free },
+        tasks: [],
+      };
+
+      this.addUser.emit(user);
       this.newUserForm.reset();
       this.skills.clear();
       this.hobbies.clear();
@@ -109,6 +137,31 @@ export class NewUserComponent {
       console.warn('Form is invalid');
       this.newUserForm.markAllAsTouched();
     }
+  }
+
+  /* ***Utils*** */
+
+  getRandomId(): number {
+    const random = Math.floor(Math.random() * 1e9);
+    return random;
+  }
+
+  setUrlGenre(value: string): string {
+    switch (value) {
+      case 'female':
+        return 'women';
+      case 'male':
+        return 'men';
+      case 'other':
+      default:
+        return 'men';
+    }
+  }
+
+  getRandomImgURL(): number {
+    const random = Math.floor(Math.random() * 99);
+
+    return random;
   }
 
   /* ***Modal*** */

@@ -18,7 +18,14 @@
       </p>
       <p>
         <strong>Genre: </strong>
-        <span>{{ user.genre ? "🚺women" : "🚹men" }}</span>
+        <span>{{ getDisplayGenre(user.genre) }}</span>
+        @if (user.genre === 0) {
+        <span>{{ "🚹men" }}</span>
+        }@else if (user.genre === 1) {
+        <span>{{ "🚺women" }}</span>
+        }@else {
+        <span>{{ "⚧️ other" }}</span>
+        }
       </p>
     </section>
     <section>
