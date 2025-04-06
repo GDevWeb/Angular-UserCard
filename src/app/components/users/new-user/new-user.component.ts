@@ -129,6 +129,8 @@ export class NewUserComponent {
         tasks: [],
       };
 
+      console.log('From new user - user genre', user.genre);
+
       this.addUser.emit(user);
       this.newUserForm.reset();
       this.skills.clear();

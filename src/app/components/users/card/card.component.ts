@@ -31,12 +31,14 @@ export class CardComponent implements OnInit {
   }
 
   getDisplayGenre(genre: Genre): string {
+    // console.log(genre);
+
     switch (genre) {
-      case Genre.male:
+      case 'male':
         return '🚹 men';
-      case Genre.female:
+      case 'female':
         return '🚺 women';
-      case Genre.other:
+      case 'other':
         return '⚧️ other';
       default:
         return '❓ unknown';

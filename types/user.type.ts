@@ -3,11 +3,7 @@ export interface GenreI {
   name: string;
 }
 
-export enum Genre {
-  male,
-  female,
-  other,
-}
+export type Genre = 'male' | 'female' | 'other';
 
 export enum Subscription {
   free,

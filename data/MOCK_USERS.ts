@@ -1,9 +1,9 @@
-import { Genre, Subscription, User } from '../types/user.type';
+import { Subscription, User } from '../types/user.type';
 
 const MOCK_USERS: User[] = [
   {
     id: 0,
-    genre: Genre.male,
+    genre: 'male',
     fname: 'Liam',
     lname: 'Carter',
     age: 29,
@@ -34,7 +34,7 @@ const MOCK_USERS: User[] = [
   },
   {
     id: 1,
-    genre: Genre.female,
+    genre: 'female',
     fname: 'Sophie',
     lname: 'Martin',
     age: 32,
@@ -72,7 +72,7 @@ const MOCK_USERS: User[] = [
   },
   {
     id: 2,
-    genre: Genre.male,
+    genre: 'male',
     fname: 'Ethan',
     lname: 'Nguyen',
     age: 26,
@@ -117,7 +117,7 @@ const MOCK_USERS: User[] = [
   },
   {
     id: 3,
-    genre: Genre.female,
+    genre: 'female',
     fname: 'Isabella',
     lname: 'López',
     age: 34,
@@ -148,7 +148,7 @@ const MOCK_USERS: User[] = [
   },
   {
     id: 4,
-    genre: Genre.male,
+    genre: 'male',
     fname: 'Noah',
     lname: 'Smith',
     age: 30,
@@ -164,7 +164,7 @@ const MOCK_USERS: User[] = [
   },
   {
     id: 5,
-    genre: Genre.female,
+    genre: 'female',
     fname: 'Ava',
     lname: 'Dubois',
     age: 28,
@@ -195,7 +195,7 @@ const MOCK_USERS: User[] = [
   },
   {
     id: 6,
-    genre: Genre.male,
+    genre: 'male',
     fname: 'Lucas',
     lname: 'Meier',
     age: 35,
@@ -233,7 +233,7 @@ const MOCK_USERS: User[] = [
   },
   {
     id: 7,
-    genre: Genre.female,
+    genre: 'female',
     fname: 'Chloe',
     lname: 'Tanaka',
     age: 24,
@@ -264,7 +264,7 @@ const MOCK_USERS: User[] = [
   },
   {
     id: 8,
-    genre: Genre.male,
+    genre: 'male',
     fname: 'Gabriel',
     lname: 'Silva',
     age: 31,
@@ -288,11 +288,101 @@ const MOCK_USERS: User[] = [
   },
   {
     id: 9,
-    genre: Genre.female,
+    genre: 'female',
     fname: 'Emma',
     lname: 'Schneider',
     age: 27,
     imgURL: 'https://randomuser.me/api/portraits/women/10.jpg',
+    job: 'AI Researcher',
+    skills: ['TensorFlow', 'Deep Learning', 'Python'],
+    hobbies: ['Meditation', 'Science Podcasts', 'Sketching'],
+    account: {
+      status: true,
+      subscription: Subscription.gold,
+    },
+    tasks: [
+      {
+        id: 0,
+        title: 'Model training',
+        time: '3h',
+        summary: 'Run training for new image dataset.',
+        status: false,
+      },
+      {
+        id: 1,
+        title: 'Conference paper',
+        time: '2h',
+        summary: 'Write abstract and methodology.',
+        status: false,
+      },
+      {
+        id: 2,
+        title: 'Experiment setup',
+        time: '1h',
+        summary: 'Configure GPU and dependencies.',
+        status: false,
+      },
+      {
+        id: 3,
+        title: 'Dataset cleaning',
+        time: '1h',
+        summary: 'Remove noisy samples from training set.',
+        status: false,
+      },
+    ],
+  },
+  {
+    id: 9,
+    genre: 'female',
+    fname: 'Emma',
+    lname: 'Schneider',
+    age: 27,
+    imgURL: 'https://randomuser.me/api/portraits/women/10.jpg',
+    job: 'AI Researcher',
+    skills: ['TensorFlow', 'Deep Learning', 'Python'],
+    hobbies: ['Meditation', 'Science Podcasts', 'Sketching'],
+    account: {
+      status: true,
+      subscription: Subscription.gold,
+    },
+    tasks: [
+      {
+        id: 0,
+        title: 'Model training',
+        time: '3h',
+        summary: 'Run training for new image dataset.',
+        status: false,
+      },
+      {
+        id: 1,
+        title: 'Conference paper',
+        time: '2h',
+        summary: 'Write abstract and methodology.',
+        status: false,
+      },
+      {
+        id: 2,
+        title: 'Experiment setup',
+        time: '1h',
+        summary: 'Configure GPU and dependencies.',
+        status: false,
+      },
+      {
+        id: 3,
+        title: 'Dataset cleaning',
+        time: '1h',
+        summary: 'Remove noisy samples from training set.',
+        status: false,
+      },
+    ],
+  },
+  {
+    id: 9,
+    genre: 'other',
+    fname: 'Em',
+    lname: 'Schneider',
+    age: 37,
+    imgURL: 'https://randomuser.me/api/portraits/women/11.jpg',
     job: 'AI Researcher',
     skills: ['TensorFlow', 'Deep Learning', 'Python'],
     hobbies: ['Meditation', 'Science Podcasts', 'Sketching'],
