@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import MOCK_USERS from '../../data/MOCK_USERS';
+import { Component } from '@angular/core';
 import { type User } from '../../types/user.type';
 import { FilterComponent } from './components/filter/filter.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
@@ -21,8 +20,10 @@ import { UsersService } from './components/users/services/users.service';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  userList = MOCK_USERS;
-  @Input() filteredUserList: User[] = [];
+  userList!: User[];
+
+  // @Input() filteredUserList: User[] = [];
+
   /* *** Utils*** */
   userId!: number;
 
@@ -37,17 +38,17 @@ export class AppComponent {
     this.userService.createUser(newUser);
   }
 
-  /* *** *** */
+  /* *** user by Id *** */
   onSelectedUserId(userId: number) {
     this.userService.selectedUserId(userId);
   }
 
   onDeleteUser(userId: number) {
-    this.userService.deleteUser(userId);
+    this.userList = this.userService.deleteUser(userId);
   }
 
   onFilterUserList(filterValue: string): void {
-    this.userService.filteredUserList(filterValue);
+    this.userList = this.userService.filterUserList(filterValue);
     console.log('From parent', filterValue);
   }
 
@@ -111,9 +112,9 @@ export class AppComponent {
 *** services ***
 8.create a user.service
   > ✅get
-  > add
+  > ✅add
   > update
-  > delete
+  > ✅delete
 >localStorage Services
 >Form createUSer Services
 */
