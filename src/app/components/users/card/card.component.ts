@@ -30,9 +30,8 @@ export class CardComponent implements OnInit {
     this.selectedUserId.emit(userId);
   }
 
+  /* *** Get the value of the user.genre =>badge *** */
   getDisplayGenre(genre: Genre): string {
-    // console.log(genre);
-
     switch (genre) {
       case 'male':
         return '🚹 men';

@@ -2,8 +2,22 @@
   <img src="/assets/images/logo.png" alt="" width="120px" />
   <div class="font-bold text-xl">Angular Exercises</div>
   <nav class="flex gap-4">
-    <a href="#" class="hover:text-slate-300">Home</a>
-    <a href="#" class="hover:text-slate-300">About</a>
-    <a href="#" class="hover:text-slate-300">Contact</a>
+    <a routerLink="/" routerLinkActive="active" class="hover:text-slate-300"
+      >Home</a
+    >
+    <a
+      routerLink="/users"
+      routerLinkActive="active"
+      class="hover:text-slate-300"
+      >User List</a
+    >
+    <a
+      routerLink="/create-user"
+      routerLinkActive="active"
+      class="hover:text-slate-300"
+      >Add user</a
+    >
+    <!-- <a href="#" class="hover:text-slate-300">About</a>
+    <a href="#" class="hover:text-slate-300">Contact</a> -->
   </nav>
 </header>

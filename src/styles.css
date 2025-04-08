@@ -24,10 +24,15 @@ header {
 body {
   @apply bg-slate-100;
 }
+
 .main-grid {
   @apply min-h-[50vh] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 m-auto;
   grid-auto-rows: min-content;
   align-items: flex-start;
+}
+
+main {
+  @apply min-h-[50vh] flex flex-col m-auto;
 }
 
 footer {

@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import MOCK_USERS from '../../data/MOCK_USERS';
 import { type User } from '../../types/user.type';
 import { FilterComponent } from './components/filter/filter.component';
@@ -6,7 +6,7 @@ import { FooterComponent } from './components/layout/footer/footer.component';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { CardComponent } from './components/users/card/card.component';
 import { NewUserComponent } from './components/users/new-user/new-user.component';
-import { UserService } from './services/user-service.service';
+import { UsersService } from './components/users/services/users.service';
 
 @Component({
   selector: 'app-root',
@@ -21,40 +21,33 @@ import { UserService } from './services/user-service.service';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  userService: UserService = inject(UserService);
-  @Input() userList = MOCK_USERS;
-
+  userList = MOCK_USERS;
   @Input() filteredUserList: User[] = [];
-
   /* *** Utils*** */
   userId!: number;
 
-  onSelectedUserId(userId: number) {
-    this.userId = userId;
+  constructor(private userService: UsersService) {}
+  /* *** Read *** */
+  ngOnInit() {
+    this.userList = this.userService.getUsers();
+  }
 
-    console.log(`[AppComponent] - selected userId:`, userId);
+  /* *** Create User *** */
+  handleAddUser(newUser: User) {
+    this.userService.createUser(newUser);
+  }
+
+  /* *** *** */
+  onSelectedUserId(userId: number) {
+    this.userService.selectedUserId(userId);
   }
 
   onDeleteUser(userId: number) {
-    const userToDelete = this.userList.find((user) => user.id === userId);
-    if (!userToDelete) return;
-
-    const confirmation = confirm(
-      `Do you really want to delete ${userToDelete.fname} ${userToDelete.lname}?`
-    );
-    if (!confirmation) return;
-
-    this.userList = this.userList.filter((u) => u.id !== userId);
+    this.userService.deleteUser(userId);
   }
 
   onFilterUserList(filterValue: string): void {
-    const filterValueCleaned = filterValue.toLowerCase();
-    this.filteredUserList = this.userList.filter(
-      (user) =>
-        user.fname.toLowerCase().includes(filterValueCleaned) ||
-        user.lname.toLowerCase().includes(filterValueCleaned) ||
-        user.job.toLowerCase().includes(filterValueCleaned)
-    );
+    this.userService.filteredUserList(filterValue);
     console.log('From parent', filterValue);
   }
 
@@ -75,12 +68,6 @@ export class AppComponent {
     }
 
     return this.userList;
-  }
-
-  /* *** *** */
-  handleAddUser(newUser: User) {
-    this.userList.push(newUser);
-    console.log('From parent component, addUser', this.userList);
   }
 }
 
@@ -119,9 +106,11 @@ export class AppComponent {
   - ✅add an user
   - add a task
 
+  - add a toast confirming some user action
+  
 *** services ***
 8.create a user.service
-  > get
+  > ✅get
   > add
   > update
   > delete
