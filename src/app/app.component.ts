@@ -1,70 +1,15 @@
 import { Component } from '@angular/core';
-import { type User } from '../../types/user.type';
-import { FilterComponent } from './components/filter/filter.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { HeaderComponent } from './components/layout/header/header.component';
-import { CardComponent } from './components/users/card/card.component';
-import { NewUserComponent } from './components/users/new-user/new-user.component';
-import { UsersService } from './components/users/services/users.service';
-import { TaskService } from './components/users/tasks/task.service';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    CardComponent,
-    HeaderComponent,
-    FooterComponent,
-    FilterComponent,
-    NewUserComponent,
-  ],
+  imports: [HeaderComponent, FooterComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
-  userList!: User[];
-  taskList!: [];
-
-  /* *** Utils*** */
-  userId!: number;
-
-  constructor(
-    private userService: UsersService,
-    private taskService: TaskService
-  ) {}
-
-  /* *** Read *** */
-  ngOnInit() {
-    this.userList = this.userService.getUsers();
-  }
-
-  /* *** Create User *** */
-  handleAddUser(newUser: User) {
-    this.userService.createUser(newUser);
-  }
-
-  /* *** user by Id *** */
-  onSelectedUserId(userId: number) {
-    // this.userService.selectedUserId(userId);
-    this.userId = userId;
-
-    console.log(`[UserServices] - selected userId:`, userId);
-  }
-
-  onDeleteUser(userId: number) {
-    this.userList = this.userService.deleteUser(userId);
-  }
-
-  onFilterUserList(filterValue: string): void {
-    this.userList = this.userService.filterUserList(filterValue);
-    console.log('From parent', filterValue);
-  }
-
-  /* ***Tasks*** */
-  /* *** Handle tasks*** */
-  onCompleteTask(taskId: number) {
-    this.userList = this.taskService.toggleTaskCompletion(taskId, this.userId);
-  }
-}
+export class AppComponent {}
 /* 
   @Computed()
 

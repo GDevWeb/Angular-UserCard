@@ -1,12 +1,5 @@
 <app-header />
 <main>
-  <app-new-user (addUser)="handleAddUser($event)" />
-  <app-filter (filterChanged)="onFilterUserList($event)" />
-  <app-card
-    [userList]="userList.length ? userList : []"
-    (selectedUserId)="onSelectedUserId($event)"
-    (deleteUser)="onDeleteUser($event)"
-    (completedTask)="onCompleteTask($event)"
-  />
+  <router-outlet></router-outlet>
 </main>
 <app-footer />
