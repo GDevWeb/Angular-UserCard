@@ -33,6 +33,9 @@ export class UsersService {
   }
 
   //--Update--
+  updateUser(userId: number): void {
+    ('');
+  }
 
   // --Delete
   deleteUser(userId: number) {
