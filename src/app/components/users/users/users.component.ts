@@ -25,14 +25,17 @@ export class UsersComponent {
   ) {}
 
   /* *** Read *** */
-  ngOnInit() {
-    this.userList = this.userService.getUsers();
+  ngOnInit(): void {
+    this.userService.getUsers().subscribe((users) => {
+      this.userList = users;
+    });
   }
-
   /* *** Create User *** */
   handleAddUser(newUser: User) {
     this.userService.createUser(newUser);
-    this.userList = this.userService.getUsers();
+    this.userService.getUsers().subscribe((users) => {
+      this.userList = users;
+    });
   }
 
   /* *** user by Id *** */
@@ -43,7 +46,7 @@ export class UsersComponent {
   }
 
   onDeleteUser(userId: number) {
-    this.userList = this.userService.deleteUser(userId);
+    this.userService.deleteUser(userId);
   }
 
   onFilterUserList(filterValue: string): void {

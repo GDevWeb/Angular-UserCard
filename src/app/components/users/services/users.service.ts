@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import MOCK_USERS from '../../../../../data/MOCK_USERS';
 import { User } from '../../../../../types/user.type';
 
@@ -6,23 +7,31 @@ import { User } from '../../../../../types/user.type';
   providedIn: 'root',
 })
 export class UsersService {
-  private users: User[] = MOCK_USERS;
+  private users$ = new BehaviorSubject<User[]>(MOCK_USERS);
   filteredUserList: User[] = [];
 
   userId!: number;
 
-  constructor() {}
+  constructor() {
+    const userFromStorage = localStorage.getItem('users');
+    if (userFromStorage) {
+      this.users$.next(JSON.parse(userFromStorage) as User[]);
+    }
+  }
 
   /* CRUD */
   // --Create--
   createUser(newUser: User) {
-    this.users.push(newUser);
-    console.log('From userService component, addUser', this.users);
+    const currentUsers = this.users$.getValue();
+    const updatedUsers = [...currentUsers, newUser];
+    this.users$.next(updatedUsers);
+    this.saveUsers(updatedUsers);
+    console.log('From userService component, addUser', this.users$);
   }
 
   // --Read--
-  getUsers(): User[] {
-    return this.users;
+  getUsers() {
+    return this.users$.asObservable();
   }
 
   /* ***Utils*** */
@@ -38,34 +47,40 @@ export class UsersService {
   }
 
   // --Delete
-  deleteUser(userId: number) {
-    const userToDelete = this.users.find((user) => user.id === userId);
+  deleteUser(userId: number): void {
+    const currentUsers = this.users$.getValue();
+    const userToDelete = currentUsers.find((user) => user.id === userId);
 
-    if (!userToDelete) return this.users;
+    if (!userToDelete) return;
 
     const confirmation = confirm(
-      `Do you really want to delete ${userToDelete.fname} ${userToDelete.lname}?`
+      `Delete ${userToDelete.fname} ${userToDelete.lname}?`
     );
+    if (!confirmation) return;
 
-    if (!confirmation) return this.users;
-
-    const filteredUsers = this.users.filter((u) => u.id !== userId);
-
-    console.log(`From userService - user successfully deleted`);
-
-    return (this.users = filteredUsers);
+    const updatedUsers = currentUsers.filter((user) => user.id !== userId);
+    this.users$.next(updatedUsers);
+    this.saveUsers(updatedUsers);
   }
 
   // /* ***Filter*** */
   filterUserList(filterValue: string): User[] {
     const filterValueCleaned = filterValue.toLowerCase();
-    this.filteredUserList = this.users.filter(
-      (user) =>
-        user.fname.toLowerCase().includes(filterValueCleaned) ||
-        user.lname.toLowerCase().includes(filterValueCleaned) ||
-        user.job.toLowerCase().includes(filterValueCleaned)
-    );
+    this.filteredUserList = this.users$
+      .getValue()
+      .filter(
+        (user) =>
+          user.fname.toLowerCase().includes(filterValueCleaned) ||
+          user.lname.toLowerCase().includes(filterValueCleaned) ||
+          user.job.toLowerCase().includes(filterValueCleaned)
+      );
 
     return this.filteredUserList;
+  }
+
+  /* ***Utils*** */
+  private saveUsers(users: User[]): void {
+    console.log('[Local Storage] - saveUsers');
+    localStorage.setItem('users', JSON.stringify(users));
   }
 }
