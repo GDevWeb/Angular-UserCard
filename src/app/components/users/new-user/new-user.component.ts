@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormArray,
   FormControl,
@@ -11,6 +11,7 @@ import { MOCK_GENRE_LIST } from '../../../../../data/MOCK_GENRE_LIST';
 import { MOCK_JOB_LIST } from '../../../../../data/MOCK_JOB_LIST';
 import { MOCK_SKILL_LIST } from '../../../../../data/MOCK_SKILLS';
 import { type Genre, GenreI, User } from '../../../../../types/user.type';
+import { UsersService } from '../services/users.service';
 import { NewUserService } from './new-user.service';
 
 @Component({
@@ -33,9 +34,12 @@ export class NewUserComponent {
   selectedSkillsList = [];
   selectedHobbiesLIst: string[] = [];
 
-  constructor(private newUserService: NewUserService) {}
+  constructor(
+    private userService: UsersService,
+    private newUserService: NewUserService
+  ) {}
 
-  @Output() addUser = new EventEmitter<User>();
+  addUser!: User;
 
   newUserForm = new FormGroup({
     fname: new FormControl('', [
@@ -111,7 +115,7 @@ export class NewUserComponent {
         this.newUserForm.value
       );
       console.log('User created:', user);
-      this.addUser.emit(user);
+      this.userService.createUser(user);
 
       this.newUserForm.reset();
       this.skills.clear();
