@@ -1,7 +1,7 @@
-<div id="grid">
+<div class="grid">
   <app-filter (filterChanged)="onFilterUserList($event)" />
   <app-card
-    [userList]="userList.length ? userList : []"
+    [userList]="userList.length > 0 ? userList : []"
     (selectedUserId)="onSelectedUserId($event)"
     (deleteUser)="onDeleteUser($event)"
     (completedTask)="onCompleteTask($event)"

@@ -10,12 +10,8 @@ import {
 import { MOCK_GENRE_LIST } from '../../../../../data/MOCK_GENRE_LIST';
 import { MOCK_JOB_LIST } from '../../../../../data/MOCK_JOB_LIST';
 import { MOCK_SKILL_LIST } from '../../../../../data/MOCK_SKILLS';
-import {
-  type Genre,
-  GenreI,
-  Subscription,
-  User,
-} from '../../../../../types/user.type';
+import { type Genre, GenreI, User } from '../../../../../types/user.type';
+import { NewUserService } from './new-user.service';
 
 @Component({
   selector: 'app-new-user',
@@ -36,6 +32,8 @@ export class NewUserComponent {
 
   selectedSkillsList = [];
   selectedHobbiesLIst: string[] = [];
+
+  constructor(private newUserService: NewUserService) {}
 
   @Output() addUser = new EventEmitter<User>();
 
@@ -109,29 +107,12 @@ export class NewUserComponent {
   /* ***Submitting a new user*** */
   handleSubmit(): void {
     if (this.newUserForm.valid) {
-      console.log('User created:', this.newUserForm.value);
-      const formValue = this.newUserForm.value;
-
-      const user: User = {
-        ...formValue,
-        id: this.getRandomId(),
-        genre: formValue.genre as Genre,
-        fname: formValue.fname ?? '',
-        lname: formValue.lname ?? '',
-        age: formValue.age ?? 18,
-        imgURL: `https://randomuser.me/api/portraits/${this.setUrlGenre(
-          formValue.genre?.toString() || 'male'
-        )}/${this.getRandomImgURL()}.jpg`,
-        job: formValue.job ?? '',
-        skills: formValue.skills ?? [],
-        hobbies: formValue.hobbies ?? [],
-        account: { status: true, subscription: Subscription.free },
-        tasks: [],
-      };
-
-      console.log('From new user - user genre', user.genre);
-
+      const user = this.newUserService.createUserFromForm(
+        this.newUserForm.value
+      );
+      console.log('User created:', user);
       this.addUser.emit(user);
+
       this.newUserForm.reset();
       this.skills.clear();
       this.hobbies.clear();
@@ -144,26 +125,15 @@ export class NewUserComponent {
   /* ***Utils*** */
 
   getRandomId(): number {
-    const random = Math.floor(Math.random() * 1e9);
-    return random;
+    return this.newUserService.generateRandomId();
   }
 
   setUrlGenre(value: string): string {
-    switch (value) {
-      case 'female':
-        return 'women';
-      case 'male':
-        return 'men';
-      case 'other':
-      default:
-        return 'men';
-    }
+    return this.newUserService.setGenreUrl(value);
   }
 
   getRandomImgURL(): number {
-    const random = Math.floor(Math.random() * 99);
-
-    return random;
+    return this.newUserService.generateRandomImgUrl();
   }
 
   /* ***Modal*** */

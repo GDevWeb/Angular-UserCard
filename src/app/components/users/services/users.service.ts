@@ -17,7 +17,7 @@ export class UsersService {
   // --Create--
   createUser(newUser: User) {
     this.users.push(newUser);
-    console.log('From parent component, addUser', this.users);
+    console.log('From userService component, addUser', this.users);
   }
 
   // --Read--
@@ -52,8 +52,6 @@ export class UsersService {
     const filteredUsers = this.users.filter((u) => u.id !== userId);
 
     console.log(`From userService - user successfully deleted`);
-
-    console.log('user service after deleting', this.users);
 
     return (this.users = filteredUsers);
   }

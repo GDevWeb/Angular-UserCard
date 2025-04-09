@@ -32,11 +32,11 @@ export class UsersComponent {
   /* *** Create User *** */
   handleAddUser(newUser: User) {
     this.userService.createUser(newUser);
+    this.userList = this.userService.getUsers();
   }
 
   /* *** user by Id *** */
   onSelectedUserId(userId: number) {
-    // this.userService.selectedUserId(userId);
     this.userId = userId;
 
     console.log(`[UserServices] - selected userId:`, userId);
