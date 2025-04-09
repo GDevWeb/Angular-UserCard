@@ -1,12 +1,19 @@
-export enum Genre {
-  male,
-  female,
+export interface GenreI {
+  id: number;
+  name: string;
 }
+
+export type Genre = 'male' | 'female' | 'other';
 
 export enum Subscription {
   free,
   member,
   gold,
+}
+
+export interface Job {
+  id: number;
+  name: string;
 }
 
 export interface User {

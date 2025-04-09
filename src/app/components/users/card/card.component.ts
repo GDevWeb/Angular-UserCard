@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Subscription, User } from '../../../../../types/user.type';
+import { Genre, Subscription, User } from '../../../../../types/user.type';
 
 @Component({
   selector: 'app-card',
@@ -28,6 +28,20 @@ export class CardComponent implements OnInit {
     console.log('from child component - getUserId', userId);
 
     this.selectedUserId.emit(userId);
+  }
+
+  /* *** Get the value of the user.genre =>badge *** */
+  getDisplayGenre(genre: Genre): string {
+    switch (genre) {
+      case 'male':
+        return '🚹 men';
+      case 'female':
+        return '🚺 women';
+      case 'other':
+        return '⚧️ other';
+      default:
+        return '❓ unknown';
+    }
   }
 
   /* *** Get the value of the account_status *** */

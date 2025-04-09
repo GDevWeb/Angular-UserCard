@@ -18,7 +18,8 @@
       </p>
       <p>
         <strong>Genre: </strong>
-        <span>{{ user.genre ? "🚺women" : "🚹men" }}</span>
+        <span>{{ getDisplayGenre(user.genre) }}</span>
+        <!-- <span>{{ user.genre }}</span> -->
       </p>
     </section>
     <section>
