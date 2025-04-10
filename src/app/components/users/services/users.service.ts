@@ -35,6 +35,10 @@ export class UsersService {
   }
 
   /* ***Utils*** */
+  getCounterUsers(): number {
+    return this.users$.getValue().length;
+  }
+
   selectedUserId(userId: number) {
     this.userId = userId;
 

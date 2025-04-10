@@ -4,11 +4,12 @@ import { FilterComponent } from '../../filter/filter.component';
 import { CardComponent } from '../card/card.component';
 import { UsersService } from '../services/users.service';
 import { TaskService } from '../tasks/task.service';
+import { CounterComponent } from '../../counter/counter.component';
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [FilterComponent, CardComponent],
+  imports: [FilterComponent, CardComponent, CounterComponent],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css',
 })

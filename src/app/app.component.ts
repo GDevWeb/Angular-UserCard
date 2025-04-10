@@ -10,4 +10,3 @@ import { HeaderComponent } from './components/layout/header/header.component';
   styleUrl: './app.component.css',
 })
 export class AppComponent {}
-/* 
