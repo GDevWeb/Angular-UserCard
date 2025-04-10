@@ -1,5 +1,6 @@
 <div class="grid">
   <app-filter (filterChanged)="onFilterUserList($event)" />
+  <app-counter />
   <app-card
     [userList]="userList.length > 0 ? userList : []"
     (selectedUserId)="onSelectedUserId($event)"
