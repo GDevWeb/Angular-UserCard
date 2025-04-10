@@ -1,4 +1,6 @@
 <div class="grid-cols-1">
+  @if(setUser()){
+
   <div #userCard class="user-card">
     <img
       [src]="setUser()?.imgURL"
@@ -17,7 +19,8 @@
       </p>
       <p>
         <strong>Genre: </strong>
-        <span>{{ getDisplayGenre }}</span>
+        <span>{{ getDisplayGenre(setUser()?.genre || "male") }}</span>
+        <!-- <span>{{ getDisplayGenre(user.genre) }}</span> -->
       </p>
     </section>
     <section>
@@ -34,7 +37,7 @@
       <section class="w-full">
         <h3 class="w-full text-center">Skills</h3>
         <ul>
-          @for (skill of user.skills; track $index) {
+          @for (skill of setUser()?.skills; track $index) {
           <li>➡️{{ skill }}</li>
           }
         </ul>
@@ -42,7 +45,7 @@
       <section>
         <h3>Hobbies</h3>
         <ul>
-          @for (hobby of user.hobbies; track $index) {
+          @for (hobby of setUser()?.hobbies; track $index) {
           <li>➡️{{ hobby }}</li>
           }
         </ul>
@@ -51,40 +54,41 @@
         <h3>Account</h3>
         <p>
           <strong>Status: </strong>
-          <!-- <span [ngClass]="setColorStatus(getStatusValue($index))">{{
-            getStatusValue($index)
-          }}</span> -->
+          <span [ngClass]="setColorStatus(getColorStatus())">{{
+            getStatusValue()
+          }}</span>
         </p>
         <div>
           <p>
             <strong>Subscription: </strong>
-            <!-- <span
+            <span
               [ngClass]="
-                setColorSubscriptionStatus(getSubscriptionStatus($index))
+                setColorSubscriptionStatus(getSubscriptionStatus(userId))
               "
-              >{{ getSubscriptionStatus($index) }}</span
-            > -->
+              >{{ getSubscriptionStatus(userId) }}</span
+            >
           </p>
         </div>
       </section>
     </div>
     <section class="flex flex-wrap items-center justify-evenly">
       <h3 class="w-full">Buttons</h3>
-      <!-- <button
+      <button
         (click)="toggleCardContent()"
         type="button"
         class="btn-primary my-4"
       >
         {{ isCardContentVisibility() ? "Hide" : "Show Details" }}
-      </button> -->
+      </button>
 
-      <!-- <button
-        (click)="handleDeleteUser(user.id)"
+      <button
+        (click)="handleDeleteUser(userId)"
         class="btn-danger"
         type="button"
       >
         Delete
-      </button> -->
+      </button>
     </section>
   </div>
+  }
 </div>

@@ -12,11 +12,8 @@ import { UsersService } from '../services/users.service';
 })
 export class CardComponent {
   private userService;
-
   @Input() userList!: User[];
   @Output() selectedUserId = new EventEmitter<number>();
-
-  isCompleted: boolean[] = [];
 
   constructor(userService: UsersService) {
     this.userService = userService;

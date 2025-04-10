@@ -82,12 +82,6 @@ export class UsersService {
     return this.filteredUserList;
   }
 
-  /* ***Utils*** */
-  private saveUsers(users: User[]): void {
-    console.log('[Local Storage] - saveUsers');
-    localStorage.setItem('users', JSON.stringify(users));
-  }
-
   /* ***User details*** */
   setUserGenre(genre: Genre): string {
     switch (genre) {
@@ -105,6 +99,7 @@ export class UsersService {
   /* *** Get the value of the account_status *** */
   setStatusValue(index: number) {
     const getStatus = this.users$.getValue()[index].account.status;
+    console.log('Account status value from services', getStatus);
 
     const statusValue = getStatus ? 'Enabled' : 'Disabled';
     this.setColorStatus(statusValue);
@@ -118,5 +113,11 @@ export class UsersService {
     if (value === 'Enabled') return (color = 'text-green-500');
 
     return (color = 'text-red-500');
+  }
+
+  /* ***Utils*** */
+  private saveUsers(users: User[]): void {
+    console.log('[Local Storage] - saveUsers');
+    localStorage.setItem('users', JSON.stringify(users));
   }
 }

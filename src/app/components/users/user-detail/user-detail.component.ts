@@ -1,17 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Genre, Subscription, User } from '../../../../../types/user.type';
 import { UsersService } from '../services/users.service';
-
 @Component({
   selector: 'app-user-detail',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.css',
 })
 export class UserDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
-  private router = inject(Router);
   private userService;
   public subscription = Subscription;
 
@@ -24,6 +23,7 @@ export class UserDetailComponent implements OnInit {
   users: User[] = [];
   user!: User;
   userId!: number;
+  isCompleted: boolean[] = [];
 
   constructor(userService: UsersService) {
     this.userService = userService;
@@ -49,13 +49,14 @@ export class UserDetailComponent implements OnInit {
 
   /* *** Get the value of the user.genre =>badge *** */
   getDisplayGenre(genre: Genre): string {
-    return this.userService.setUserGenre(this.user.genre);
+    return this.userService.setUserGenre(genre);
   }
 
   /* *** Get the value of the account_status *** */
   getStatusValue() {
-    this.userService.setStatusValue(this.userId);
+    return this.userService.setStatusValue(this.userId);
   }
+
   /* *** Get the value of the subscription *** */
   getSubscriptionStatus(index: number): string {
     const subscriptionIndex = this.users[index].account.subscription;
@@ -85,6 +86,19 @@ export class UserDetailComponent implements OnInit {
         break;
     }
     return color;
+  }
+
+  getColorStatus(): string {
+    return this.userService.setColorStatus(this.userId.toString());
+  }
+
+  setColorStatus(value: string): string {
+    // this.userService.setColorStatus(this.userId.toString());
+    let color: string;
+
+    if (value === 'Enabled') return (color = 'text-green-500');
+
+    return (color = 'text-red-500');
   }
 
   /* ***Toggle card content *** */
