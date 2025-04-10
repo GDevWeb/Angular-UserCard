@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import MOCK_USERS from '../../../../../data/MOCK_USERS';
-import { User } from '../../../../../types/user.type';
+import { Genre, User } from '../../../../../types/user.type';
 
 @Injectable({
   providedIn: 'root',
@@ -40,7 +40,7 @@ export class UsersService {
   }
 
   selectedUserId(userId: number) {
-    this.userId = userId;
+    this.userId = Number(userId);
 
     console.log(`[UserServices] - selected userId:`, userId);
   }
@@ -86,5 +86,37 @@ export class UsersService {
   private saveUsers(users: User[]): void {
     console.log('[Local Storage] - saveUsers');
     localStorage.setItem('users', JSON.stringify(users));
+  }
+
+  /* ***User details*** */
+  setUserGenre(genre: Genre): string {
+    switch (genre) {
+      case 'male':
+        return '🚹 men';
+      case 'female':
+        return '🚺 women';
+      case 'other':
+        return '⚧️ other';
+      default:
+        return '❓ unknown';
+    }
+  }
+
+  /* *** Get the value of the account_status *** */
+  setStatusValue(index: number) {
+    const getStatus = this.users$.getValue()[index].account.status;
+
+    const statusValue = getStatus ? 'Enabled' : 'Disabled';
+    this.setColorStatus(statusValue);
+
+    return statusValue;
+  }
+
+  setColorStatus(value: string): string {
+    let color: string;
+
+    if (value === 'Enabled') return (color = 'text-green-500');
+
+    return (color = 'text-red-500');
   }
 }

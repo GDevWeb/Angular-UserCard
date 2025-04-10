@@ -16,3 +16,22 @@ export class CounterComponent {
     this.counter = this.userService.getCounterUsers();
   }
 }
+
+/* 
+type UserStatus = "active" | "inactive" | "pending";
+
+function isValidStatus(status: string): status is UserStatus {
+  return ["active", "inactive", "pending"].includes(status);
+}
+
+function filterValidStatuses(list: string[]): UserStatus[] {
+  return list.filter(isValidStatus);
+}
+
+const rawStatuses = ["active", "inactive", "pending", "banned", "vacancy"];
+const filtered: UserStatus[] = filterValidStatuses(rawStatuses);
+
+console.log(filtered); // → ["active", "inactive", "pending"]
+
+
+*/

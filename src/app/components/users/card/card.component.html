@@ -19,115 +19,15 @@
       <p>
         <strong>Genre: </strong>
         <span>{{ getDisplayGenre(user.genre) }}</span>
-        <!-- <span>{{ user.genre }}</span> -->
       </p>
-    </section>
-    <section>
       <h3>Job</h3>
       <p>
         <span>{{ user.job }}</span>
       </p>
     </section>
-    <section
-      id="tasks"
-      [hidden]="!isCardContentVisibility($index)"
-      class="border-b-2"
-      #tasks
-    >
-      <h3>Tasks</h3>
-      @if (user.tasks.length > 0) {
-
-      <ul class="flex flex-col gap-4 justify-evenly">
-        @for (task of user.tasks.slice(0,3); track $index) {
-        <li class="my-4 p-4 border-b-2 border-gray-400">
-          <h3>{{ task.title }}</h3>
-          <p>
-            <strong>Time required:</strong> <time> {{ task.time }}</time>
-          </p>
-
-          <p><strong>Summary: </strong>{{ task.summary }}</p>
-
-          <p>
-            <strong>Status:</strong
-            >{{ task.status ? "✔️ Completed " : "⏳ In progress " }}
-          </p>
-
-          <div class="inputGroup mt-4">
-            <button
-              type="button"
-              (click)="selectedUserTask(task.id)"
-              class="text-green-600 bg-transparent border border-green-500 px-2 rounded hover:bg-green-100"
-            >
-              Completed
-            </button>
-          </div>
-        </li>
-        }
-      </ul>
-      }@else {
-      <h2>Not tasks for the moment</h2>
-      }
-    </section>
-    <div
-      id="card-content"
-      [hidden]="!isCardContentVisibility($index)"
-      class="w-full flex flex-col gap-4 items-start justify-evenly"
-    >
-      <section class="w-full">
-        <h3 class="w-full text-center">Skills</h3>
-        <ul>
-          @for (skill of user.skills; track $index) {
-          <li>➡️{{ skill }}</li>
-          }
-        </ul>
-      </section>
-      <section>
-        <h3>Hobbies</h3>
-        <ul>
-          @for (hobby of user.hobbies; track $index) {
-          <li>➡️{{ hobby }}</li>
-          }
-        </ul>
-      </section>
-      <section class="card-footer">
-        <h3>Account</h3>
-        <p>
-          <strong>Status: </strong>
-          <span [ngClass]="setColorStatus(getStatusValue($index))">{{
-            getStatusValue($index)
-          }}</span>
-        </p>
-        <div>
-          <p>
-            <strong>Subscription: </strong>
-            <span
-              [ngClass]="
-                setColorSubscriptionStatus(getSubscriptionStatus($index))
-              "
-              >{{ getSubscriptionStatus($index) }}</span
-            >
-          </p>
-        </div>
-      </section>
-    </div>
-    <section class="flex flex-wrap items-center justify-evenly">
-      <h3 class="w-full">Buttons</h3>
-      <button
-        (click)="toggleCardContent($index)"
-        type="button"
-        class="btn-primary my-4"
-      >
-        {{ isCardContentVisibility($index) ? "Hide" : "Show Details" }}
-      </button>
-
-      <button
-        (click)="handleDeleteUser(user.id)"
-        class="btn-danger"
-        type="button"
-      >
-        Delete
-      </button>
-    </section>
+    <button type="button" class="btn-info">
+      <a [routerLink]="['/users', user.id]">View user profil</a>
+    </button>
   </div>
   } }@else {
   <h2>🙇The userList is empty!</h2>
