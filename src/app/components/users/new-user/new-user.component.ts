@@ -54,7 +54,7 @@ export class NewUserComponent {
     ]),
     age: new FormControl(null, [Validators.required, Validators.min(18)]),
     genre: new FormControl<Genre | null>(null, Validators.required),
-    imgUrl: new FormControl(''),
+    imgURL: new FormControl(''),
     job: new FormControl('', Validators.required),
     skills: new FormArray([]),
     hobbies: new FormArray([]),

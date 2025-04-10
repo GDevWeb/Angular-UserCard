@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import MOCK_USERS from '../../../../../data/MOCK_USERS';
 import { Genre, User } from '../../../../../types/user.type';
@@ -11,6 +12,8 @@ export class UsersService {
   filteredUserList: User[] = [];
 
   userId!: number;
+
+  private router = new Router();
 
   constructor() {
     const userFromStorage = localStorage.getItem('users');
@@ -65,6 +68,9 @@ export class UsersService {
     const updatedUsers = currentUsers.filter((user) => user.id !== userId);
     this.users$.next(updatedUsers);
     this.saveUsers(updatedUsers);
+    setTimeout(() => {
+      this.router.navigate(['/']);
+    }, 3000);
   }
 
   // /* ***Filter*** */
@@ -99,8 +105,6 @@ export class UsersService {
   /* *** Get the value of the account_status *** */
   setStatusValue(index: number) {
     const getStatus = this.users$.getValue()[index].account.status;
-    console.log('Account status value from services', getStatus);
-
     const statusValue = getStatus ? 'Enabled' : 'Disabled';
     this.setColorStatus(statusValue);
 

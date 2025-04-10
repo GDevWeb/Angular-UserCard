@@ -93,12 +93,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   setColorStatus(value: string): string {
-    // this.userService.setColorStatus(this.userId.toString());
-    let color: string;
-
-    if (value === 'Enabled') return (color = 'text-green-500');
-
-    return (color = 'text-red-500');
+    return this.userService.setColorStatus(this.userId.toString());
   }
 
   /* ***Toggle card content *** */
@@ -112,7 +107,7 @@ export class UserDetailComponent implements OnInit {
 
   /* *** CRUD *** */
   handleDeleteUser(userId: number) {
-    this.deleteUser.emit(userId);
+    this.userService.deleteUser(userId);
   }
 
   /* *** Handle tasks*** */
