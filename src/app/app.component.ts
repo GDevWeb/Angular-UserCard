@@ -38,6 +38,7 @@ export class AppComponent {}
     
     
     *** Extra UI *** 
+    Next session
     - add a toast confirming some user action
 
     */
