@@ -51,13 +51,13 @@ export class UserDetailComponent implements OnInit {
     const status = this.getSubscriptionStatus();
     switch (status) {
       case 'Free':
-        return 'text-orange-500';
+        return 'text-white bg-orange-500 px-3 py-1 rounded-full';
       case 'Member':
-        return 'text-green-500';
+        return 'text-white bg-green-500 px-3 py-1 rounded-full';
       case 'Gold':
-        return 'text-amber-500';
+        return 'text-white bg-amber-500 px-3 py-1 rounded-full';
       default:
-        return 'text-gray-500';
+        return 'text-white bg-gray-500 px-3 py-1 rounded-full';
     }
   }
 

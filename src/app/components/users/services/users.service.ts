@@ -140,9 +140,10 @@ export class UsersService {
   setColorStatus(value: string): string {
     let color: string;
 
-    if (value === 'Enabled') return (color = 'text-green-500');
+    if (value === 'Enabled')
+      return (color = 'text-white bg-green-500 px-3 py-1 rounded-full');
 
-    return (color = 'text-red-500');
+    return (color = 'text-white bg-red-500 px-3 py-1 rounded-full');
   }
 
   /* ***Utils*** */
