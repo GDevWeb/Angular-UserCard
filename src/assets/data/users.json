@@ -1,0 +1,501 @@
+[
+  {
+    "id": 0,
+    "genre": "male",
+    "fname": "Liam",
+    "lname": "Carter",
+    "age": 29,
+    "imgURL": "https://randomuser.me/api/portraits/men/1.jpg",
+    "job": "Frontend Developer",
+    "skills": [
+      "JavaScript",
+      "React",
+      "CSS"
+    ],
+    "hobbies": [
+      "Hiking",
+      "Photography",
+      "Chess"
+    ],
+    "account": {
+      "status": true,
+      "subscription": "member"
+    },
+    "tasks": [
+      {
+        "id": 0,
+        "title": "Fix navbar bug",
+        "time": "2h",
+        "summary": "Resolve mobile menu collapse issue.",
+        "status": false
+      },
+      {
+        "id": 1,
+        "title": "Code review",
+        "time": "1h",
+        "summary": "Review PRs from junior devs.",
+        "status": false
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "genre": "female",
+    "fname": "Sophie",
+    "lname": "Martin",
+    "age": 32,
+    "imgURL": "https://randomuser.me/api/portraits/women/2.jpg",
+    "job": "UX Designer",
+    "skills": [
+      "Figma",
+      "Sketch",
+      "User Research"
+    ],
+    "hobbies": [
+      "Yoga",
+      "Painting",
+      "Cooking"
+    ],
+    "account": {
+      "status": true,
+      "subscription": "free"
+    },
+    "tasks": [
+      {
+        "id": 0,
+        "title": "User interviews",
+        "time": "3h",
+        "summary": "Conduct sessions with 5 users.",
+        "status": false
+      },
+      {
+        "id": 1,
+        "title": "Wireframe updates",
+        "time": "2h",
+        "summary": "Revise homepage layout.",
+        "status": false
+      },
+      {
+        "id": 2,
+        "title": "Design system sync",
+        "time": "1h",
+        "summary": "Align button styles across screens.",
+        "status": false
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "genre": "female",
+    "fname": "Mock2",
+    "lname": "User2",
+    "age": 32,
+    "imgURL": "https://randomuser.me/api/portraits/women/2.jpg",
+    "job": "UX Designer",
+    "skills": [
+      "Figma",
+      "Sketch",
+      "User Research"
+    ],
+    "hobbies": [
+      "Yoga",
+      "Painting",
+      "Cooking"
+    ],
+    "account": {
+      "status": true,
+      "subscription": "free"
+    },
+    "tasks": [
+      {
+        "id": 0,
+        "title": "User interviews",
+        "time": "3h",
+        "summary": "Conduct sessions with 5 users.",
+        "status": false
+      },
+      {
+        "id": 1,
+        "title": "Wireframe updates",
+        "time": "2h",
+        "summary": "Revise homepage layout.",
+        "status": false
+      },
+      {
+        "id": 2,
+        "title": "Design system sync",
+        "time": "1h",
+        "summary": "Align button styles across screens.",
+        "status": false
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "genre": "female",
+    "fname": "Mock3",
+    "lname": "User3",
+    "age": 32,
+    "imgURL": "https://randomuser.me/api/portraits/women/2.jpg",
+    "job": "UX Designer",
+    "skills": [
+      "Figma",
+      "Sketch",
+      "User Research"
+    ],
+    "hobbies": [
+      "Yoga",
+      "Painting",
+      "Cooking"
+    ],
+    "account": {
+      "status": true,
+      "subscription": "free"
+    },
+    "tasks": [
+      {
+        "id": 0,
+        "title": "User interviews",
+        "time": "3h",
+        "summary": "Conduct sessions with 5 users.",
+        "status": false
+      },
+      {
+        "id": 1,
+        "title": "Wireframe updates",
+        "time": "2h",
+        "summary": "Revise homepage layout.",
+        "status": false
+      },
+      {
+        "id": 2,
+        "title": "Design system sync",
+        "time": "1h",
+        "summary": "Align button styles across screens.",
+        "status": false
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "genre": "female",
+    "fname": "Mock4",
+    "lname": "User4",
+    "age": 32,
+    "imgURL": "https://randomuser.me/api/portraits/women/2.jpg",
+    "job": "UX Designer",
+    "skills": [
+      "Figma",
+      "Sketch",
+      "User Research"
+    ],
+    "hobbies": [
+      "Yoga",
+      "Painting",
+      "Cooking"
+    ],
+    "account": {
+      "status": true,
+      "subscription": "free"
+    },
+    "tasks": [
+      {
+        "id": 0,
+        "title": "User interviews",
+        "time": "3h",
+        "summary": "Conduct sessions with 5 users.",
+        "status": false
+      },
+      {
+        "id": 1,
+        "title": "Wireframe updates",
+        "time": "2h",
+        "summary": "Revise homepage layout.",
+        "status": false
+      },
+      {
+        "id": 2,
+        "title": "Design system sync",
+        "time": "1h",
+        "summary": "Align button styles across screens.",
+        "status": false
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "genre": "female",
+    "fname": "Mock5",
+    "lname": "User5",
+    "age": 32,
+    "imgURL": "https://randomuser.me/api/portraits/women/2.jpg",
+    "job": "UX Designer",
+    "skills": [
+      "Figma",
+      "Sketch",
+      "User Research"
+    ],
+    "hobbies": [
+      "Yoga",
+      "Painting",
+      "Cooking"
+    ],
+    "account": {
+      "status": true,
+      "subscription": "free"
+    },
+    "tasks": [
+      {
+        "id": 0,
+        "title": "User interviews",
+        "time": "3h",
+        "summary": "Conduct sessions with 5 users.",
+        "status": false
+      },
+      {
+        "id": 1,
+        "title": "Wireframe updates",
+        "time": "2h",
+        "summary": "Revise homepage layout.",
+        "status": false
+      },
+      {
+        "id": 2,
+        "title": "Design system sync",
+        "time": "1h",
+        "summary": "Align button styles across screens.",
+        "status": false
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "genre": "female",
+    "fname": "Mock6",
+    "lname": "User6",
+    "age": 32,
+    "imgURL": "https://randomuser.me/api/portraits/women/2.jpg",
+    "job": "UX Designer",
+    "skills": [
+      "Figma",
+      "Sketch",
+      "User Research"
+    ],
+    "hobbies": [
+      "Yoga",
+      "Painting",
+      "Cooking"
+    ],
+    "account": {
+      "status": true,
+      "subscription": "free"
+    },
+    "tasks": [
+      {
+        "id": 0,
+        "title": "User interviews",
+        "time": "3h",
+        "summary": "Conduct sessions with 5 users.",
+        "status": false
+      },
+      {
+        "id": 1,
+        "title": "Wireframe updates",
+        "time": "2h",
+        "summary": "Revise homepage layout.",
+        "status": false
+      },
+      {
+        "id": 2,
+        "title": "Design system sync",
+        "time": "1h",
+        "summary": "Align button styles across screens.",
+        "status": false
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "genre": "female",
+    "fname": "Mock7",
+    "lname": "User7",
+    "age": 32,
+    "imgURL": "https://randomuser.me/api/portraits/women/2.jpg",
+    "job": "UX Designer",
+    "skills": [
+      "Figma",
+      "Sketch",
+      "User Research"
+    ],
+    "hobbies": [
+      "Yoga",
+      "Painting",
+      "Cooking"
+    ],
+    "account": {
+      "status": true,
+      "subscription": "free"
+    },
+    "tasks": [
+      {
+        "id": 0,
+        "title": "User interviews",
+        "time": "3h",
+        "summary": "Conduct sessions with 5 users.",
+        "status": false
+      },
+      {
+        "id": 1,
+        "title": "Wireframe updates",
+        "time": "2h",
+        "summary": "Revise homepage layout.",
+        "status": false
+      },
+      {
+        "id": 2,
+        "title": "Design system sync",
+        "time": "1h",
+        "summary": "Align button styles across screens.",
+        "status": false
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "genre": "female",
+    "fname": "Mock8",
+    "lname": "User8",
+    "age": 32,
+    "imgURL": "https://randomuser.me/api/portraits/women/2.jpg",
+    "job": "UX Designer",
+    "skills": [
+      "Figma",
+      "Sketch",
+      "User Research"
+    ],
+    "hobbies": [
+      "Yoga",
+      "Painting",
+      "Cooking"
+    ],
+    "account": {
+      "status": true,
+      "subscription": "free"
+    },
+    "tasks": [
+      {
+        "id": 0,
+        "title": "User interviews",
+        "time": "3h",
+        "summary": "Conduct sessions with 5 users.",
+        "status": false
+      },
+      {
+        "id": 1,
+        "title": "Wireframe updates",
+        "time": "2h",
+        "summary": "Revise homepage layout.",
+        "status": false
+      },
+      {
+        "id": 2,
+        "title": "Design system sync",
+        "time": "1h",
+        "summary": "Align button styles across screens.",
+        "status": false
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "genre": "female",
+    "fname": "Mock9",
+    "lname": "User9",
+    "age": 32,
+    "imgURL": "https://randomuser.me/api/portraits/women/2.jpg",
+    "job": "UX Designer",
+    "skills": [
+      "Figma",
+      "Sketch",
+      "User Research"
+    ],
+    "hobbies": [
+      "Yoga",
+      "Painting",
+      "Cooking"
+    ],
+    "account": {
+      "status": true,
+      "subscription": "free"
+    },
+    "tasks": [
+      {
+        "id": 0,
+        "title": "User interviews",
+        "time": "3h",
+        "summary": "Conduct sessions with 5 users.",
+        "status": false
+      },
+      {
+        "id": 1,
+        "title": "Wireframe updates",
+        "time": "2h",
+        "summary": "Revise homepage layout.",
+        "status": false
+      },
+      {
+        "id": 2,
+        "title": "Design system sync",
+        "time": "1h",
+        "summary": "Align button styles across screens.",
+        "status": false
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "genre": "female",
+    "fname": "Mock10",
+    "lname": "User10",
+    "age": 32,
+    "imgURL": "https://randomuser.me/api/portraits/women/2.jpg",
+    "job": "UX Designer",
+    "skills": [
+      "Figma",
+      "Sketch",
+      "User Research"
+    ],
+    "hobbies": [
+      "Yoga",
+      "Painting",
+      "Cooking"
+    ],
+    "account": {
+      "status": true,
+      "subscription": "free"
+    },
+    "tasks": [
+      {
+        "id": 0,
+        "title": "User interviews",
+        "time": "3h",
+        "summary": "Conduct sessions with 5 users.",
+        "status": false
+      },
+      {
+        "id": 1,
+        "title": "Wireframe updates",
+        "time": "2h",
+        "summary": "Revise homepage layout.",
+        "status": false
+      },
+      {
+        "id": 2,
+        "title": "Design system sync",
+        "time": "1h",
+        "summary": "Align button styles across screens.",
+        "status": false
+      }
+    ]
+  }
+]

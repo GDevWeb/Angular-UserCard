@@ -1,119 +1,95 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Genre, Subscription, User } from '../../../../../types/user.type';
+import { Subscription, User } from '../../../../../types/user.type';
 import { UsersService } from '../services/users.service';
+
 @Component({
   selector: 'app-user-detail',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.css',
 })
 export class UserDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
-  private userService;
-  public subscription = Subscription;
+  private userService = inject(UsersService);
 
-  @Output() selectedUserId = new EventEmitter<number>();
-  @Output() deleteUser = new EventEmitter<number>();
-  @Output() completedTask = new EventEmitter<number>();
-
-  public cardVisibility!: boolean;
-
-  users: User[] = [];
-  user!: User;
-  userId!: number;
-  isCompleted: boolean[] = [];
-
-  constructor(userService: UsersService) {
-    this.userService = userService;
-  }
+  public user!: User | undefined;
+  public userId!: number;
+  public cardVisibility = false;
+  public Subscription = Subscription;
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.userId = +params['userId'];
+      this.userService.getUsers().subscribe((users) => {
+        this.user = users.find((user) => user.id === this.userId);
+      });
     });
-
-    this.userService.getUsers().subscribe((users) => (this.users = users));
   }
 
-  setUser(): User | undefined {
-    const user = this.users.find((user) => user.id === this.userId);
-
-    if (!user) {
-      throw Error(`Error user not found`);
-    }
-
-    return user;
+  getDisplayGenre(): string {
+    return this.userService.setUserGenre(this.user?.genre || 'other');
   }
 
-  /* *** Get the value of the user.genre =>badge *** */
-  getDisplayGenre(genre: Genre): string {
-    return this.userService.setUserGenre(genre);
-  }
-
-  /* *** Get the value of the account_status *** */
-  getStatusValue() {
+  getStatusValue(): string {
     return this.userService.setStatusValue(this.userId);
   }
 
-  /* *** Get the value of the subscription *** */
-  getSubscriptionStatus(index: number): string {
-    const subscriptionIndex = this.users[index].account.subscription;
-    const subscriptionStatusValue = this.subscription[subscriptionIndex];
-
-    this.setColorSubscriptionStatus(subscriptionStatusValue);
-    return `${subscriptionStatusValue
-      .slice(0, 1)
-      .toLocaleUpperCase()}${subscriptionStatusValue.slice(1)}`;
+  getColorStatus(): string {
+    return this.userService.setColorStatus(this.getStatusValue());
   }
 
-  setColorSubscriptionStatus(status: string): string {
-    let color: string;
+  getSubscriptionStatus(): string {
+    const subKey = this.user?.account?.subscription ?? 0;
+    const status = Subscription[subKey];
+    return `${status.slice(0, 1).toUpperCase()}${status.slice(1)}`;
+  }
 
+  getSubscriptionColor(): string {
+    const status = this.getSubscriptionStatus();
     switch (status) {
       case 'Free':
-        color = 'text-orange-500';
-        break;
+        return 'text-white bg-orange-500 px-3 py-1 rounded-full';
       case 'Member':
-        color = 'text-green-500';
-        break;
+        return 'text-white bg-green-500 px-3 py-1 rounded-full';
       case 'Gold':
-        color = 'text-amber-500';
-        break;
+        return 'text-white bg-amber-500 px-3 py-1 rounded-full';
       default:
-        color = 'text-gray-500';
-        break;
+        return 'text-white bg-gray-500 px-3 py-1 rounded-full';
     }
-    return color;
   }
 
-  getColorStatus(): string {
-    return this.userService.setColorStatus(this.userId.toString());
+  toggleCardContent(): boolean {
+    return (this.cardVisibility = !this.cardVisibility);
   }
 
-  setColorStatus(value: string): string {
-    return this.userService.setColorStatus(this.userId.toString());
+  handleDeleteUser(): void {
+    if (this.user) {
+      this.userService.deleteUser(this.user.id);
+    }
   }
 
-  /* ***Toggle card content *** */
-  toggleCardContent(): void {
-    this.cardVisibility = !this.cardVisibility;
+  isArray(value: any): boolean {
+    return Array.isArray(value);
   }
 
-  isCardContentVisibility(): boolean {
-    return this.cardVisibility;
-  }
+  getUserAccount(): number | boolean {
+    const account = this.user?.account;
 
-  /* *** CRUD *** */
-  handleDeleteUser(userId: number) {
-    this.userService.deleteUser(userId);
-  }
+    if (!account) return 0;
 
-  /* *** Handle tasks*** */
-  selectedUserTask(taskId: number) {
-    console.log(taskId);
+    const { subscription, status } = account;
 
-    this.completedTask.emit(taskId);
+    const subscriptionIsValid =
+      subscription !== undefined && subscription !== null;
+    const statusIsValid = typeof status === 'boolean';
+
+    if (!subscriptionIsValid || !statusIsValid) {
+      return 0;
+    }
+
+    return status && subscription;
   }
 }

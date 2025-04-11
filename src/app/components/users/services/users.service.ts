@@ -1,14 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import MOCK_USERS from '../../../../../data/MOCK_USERS';
-import { Genre, User } from '../../../../../types/user.type';
+// import MOCK_USERS from '../../../../../data/MOCK_USERS';
+import { Genre, Subscription, User } from '../../../../../types/user.type';
+import userJSON from '../../../../assets/data/users.json';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-  private users$ = new BehaviorSubject<User[]>(MOCK_USERS);
+  // private users$ = new BehaviorSubject<User[]>(MOCK_USERS);
+  private users$ = new BehaviorSubject<User[]>(
+    (userJSON as any[]).map((user) => ({
+      ...user,
+      account: {
+        ...user.account,
+        subscription: user.account.subscription as Subscription, // Ensure proper type casting
+      },
+    }))
+  );
   filteredUserList: User[] = [];
 
   userId!: number;
@@ -27,6 +37,8 @@ export class UsersService {
   createUser(newUser: User) {
     const currentUsers = this.users$.getValue();
     const updatedUsers = [...currentUsers, newUser];
+    console.log('user id', newUser.id);
+
     this.users$.next(updatedUsers);
     this.saveUsers(updatedUsers);
     console.log('From userService component, addUser', this.users$);
@@ -34,6 +46,23 @@ export class UsersService {
 
   // --Read--
   getUsers() {
+    const userFromStorage = localStorage.getItem('users');
+
+    if (userFromStorage) {
+      const parsedUsers = JSON.parse(userFromStorage);
+
+      const normalizedUsers = parsedUsers.map((user: User) => ({
+        ...user,
+
+        skills: Array.isArray(user.skills)
+          ? user.skills
+          : Object.values(user.skills || {}),
+        hobbies: Array.isArray(user.hobbies)
+          ? user.hobbies
+          : Object.values(user.hobbies || {}),
+      }));
+      this.users$.next(normalizedUsers);
+    }
     return this.users$.asObservable();
   }
 
@@ -44,8 +73,6 @@ export class UsersService {
 
   selectedUserId(userId: number) {
     this.userId = Number(userId);
-
-    console.log(`[UserServices] - selected userId:`, userId);
   }
 
   //--Update--
@@ -103,20 +130,20 @@ export class UsersService {
   }
 
   /* *** Get the value of the account_status *** */
-  setStatusValue(index: number) {
-    const getStatus = this.users$.getValue()[index].account.status;
-    const statusValue = getStatus ? 'Enabled' : 'Disabled';
-    this.setColorStatus(statusValue);
+  setStatusValue(index: number): string {
+    const user = this.users$.getValue().find((u) => u.id === index);
+    if (!user || typeof user.account?.status !== 'boolean') return 'Disabled';
 
-    return statusValue;
+    return user.account.status ? 'Enabled' : 'Disabled';
   }
 
   setColorStatus(value: string): string {
     let color: string;
 
-    if (value === 'Enabled') return (color = 'text-green-500');
+    if (value === 'Enabled')
+      return (color = 'text-white bg-green-500 px-3 py-1 rounded-full');
 
-    return (color = 'text-red-500');
+    return (color = 'text-white bg-red-500 px-3 py-1 rounded-full');
   }
 
   /* ***Utils*** */

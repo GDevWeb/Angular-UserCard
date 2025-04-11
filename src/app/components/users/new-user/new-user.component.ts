@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormArray,
   FormControl,
@@ -10,7 +10,12 @@ import {
 import { MOCK_GENRE_LIST } from '../../../../../data/MOCK_GENRE_LIST';
 import { MOCK_JOB_LIST } from '../../../../../data/MOCK_JOB_LIST';
 import { MOCK_SKILL_LIST } from '../../../../../data/MOCK_SKILLS';
-import { type Genre, GenreI, User } from '../../../../../types/user.type';
+import {
+  type Genre,
+  GenreI,
+  Subscription,
+  User,
+} from '../../../../../types/user.type';
 import { UsersService } from '../services/users.service';
 import { NewUserService } from './new-user.service';
 
@@ -21,7 +26,7 @@ import { NewUserService } from './new-user.service';
   templateUrl: './new-user.component.html',
   styleUrl: './new-user.component.css',
 })
-export class NewUserComponent {
+export class NewUserComponent implements OnInit {
   readonly genreList = MOCK_GENRE_LIST;
   readonly jobList = MOCK_JOB_LIST;
   readonly skillsList = MOCK_SKILL_LIST;
@@ -39,9 +44,11 @@ export class NewUserComponent {
     private newUserService: NewUserService
   ) {}
 
+  ngOnInit(): void {}
   addUser!: User;
 
   newUserForm = new FormGroup({
+    id: new FormControl(this.getRandomId),
     fname: new FormControl('', [
       Validators.required,
       Validators.minLength(2),
@@ -58,6 +65,13 @@ export class NewUserComponent {
     job: new FormControl('', Validators.required),
     skills: new FormArray([]),
     hobbies: new FormArray([]),
+    account: new FormArray([
+      new FormGroup({
+        status: new FormControl(true),
+        subscription: new FormControl(Subscription.free),
+      }),
+    ]),
+    tasks: new FormArray([]),
   });
 
   /* *** Skills *** */
@@ -138,10 +152,5 @@ export class NewUserComponent {
 
   getRandomImgURL(): number {
     return this.newUserService.generateRandomImgUrl();
-  }
-
-  /* ***Modal*** */
-  onCancel() {
-    return !this.isOpen;
   }
 }

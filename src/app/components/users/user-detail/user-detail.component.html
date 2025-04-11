@@ -1,93 +1,83 @@
-<div class="grid-cols-1">
-  @if(setUser()){
-
-  <div #userCard class="user-card">
-    <img
-      [src]="setUser()?.imgURL"
-      [alt]="`Photo of ${setUser()?.fname} ${setUser()?.lname}`"
-      [title]="`Photo of ${setUser()?.fname} ${setUser()?.lname}`"
-    />
-    <section class="card-header">
-      <h3>Identity</h3>
-      <p>
-        <strong>First name: </strong>
-        <span>{{ setUser()?.fname }}</span>
-      </p>
-      <p>
-        <strong>Last name: </strong>
-        <span>{{ setUser()?.lname }}</span>
-      </p>
-      <p>
-        <strong>Genre: </strong>
-        <span>{{ getDisplayGenre(setUser()?.genre || "male") }}</span>
+<div id="grid" class="w-screen flex flex-col items-center p-6 bg-slate-100">
+  @if(user){
+  <div class="w-full max-w-xl bg-white rounded-2xl shadow-xl p-6 space-y-6">
+    <!-- Section: Profile -->
+    <section class="flex flex-col items-center gap-4">
+      <img
+        [src]="user.imgURL"
+        [alt]="`Photo of ${user.fname} ${user.lname}`"
+        [title]="`Photo of ${user.fname} ${user.lname}`"
+        class="w-[160px] h-[160px] rounded-full object-cover shadow-md"
+      />
+      <h2 class="text-2xl font-semibold text-gray-800">
+        {{ user.fname }} {{ user.lname }}
+      </h2>
+      <p class="text-gray-600">
+        👤 <span class="font-medium">Genre:</span> {{ getDisplayGenre() }}
       </p>
     </section>
+
+    <!-- Section: Job -->
+    <section class="text-center">
+      <h3 class="text-lg font-semibold text-gray-700">Job</h3>
+      <p class="text-gray-600">{{ user.job }}</p>
+    </section>
+
+    <!-- Section: Skills -->
     <section>
-      <h3>Job</h3>
-      <p>
-        <span>{{ setUser()?.job }}</span>
-      </p>
+      <h3 class="text-lg font-semibold text-gray-700 mb-2 text-center">
+        Skills
+      </h3>
+      <ul class="flex flex-wrap gap-2 justify-center text-sm text-blue-600">
+        @if (isArray(user.skills)) { @for (skill of user.skills; track $index) {
+        <li class="bg-blue-100 px-3 py-1 rounded-full">#{{ skill }}</li>
+        } }
+      </ul>
     </section>
-    <div
-      id="card-content"
-      [hidden]="!isCardContentVisibility()"
-      class="w-full flex flex-col gap-4 items-start justify-evenly"
-    >
-      <section class="w-full">
-        <h3 class="w-full text-center">Skills</h3>
-        <ul>
-          @for (skill of setUser()?.skills; track $index) {
-          <li>➡️{{ skill }}</li>
-          }
-        </ul>
-      </section>
-      <section>
-        <h3>Hobbies</h3>
-        <ul>
-          @for (hobby of setUser()?.hobbies; track $index) {
-          <li>➡️{{ hobby }}</li>
-          }
-        </ul>
-      </section>
-      <section class="card-footer">
-        <h3>Account</h3>
-        <p>
-          <strong>Status: </strong>
-          <span [ngClass]="setColorStatus(getColorStatus())">{{
-            getStatusValue()
-          }}</span>
-        </p>
-        <div>
-          <p>
-            <strong>Subscription: </strong>
-            <span
-              [ngClass]="
-                setColorSubscriptionStatus(getSubscriptionStatus(userId))
-              "
-              >{{ getSubscriptionStatus(userId) }}</span
-            >
-          </p>
-        </div>
-      </section>
-    </div>
-    <section class="flex flex-wrap items-center justify-evenly">
-      <h3 class="w-full">Buttons</h3>
-      <button
-        (click)="toggleCardContent()"
-        type="button"
-        class="btn-primary my-4"
-      >
-        {{ isCardContentVisibility() ? "Hide" : "Show Details" }}
-      </button>
 
-      <button
-        (click)="handleDeleteUser(userId)"
-        class="btn-danger"
-        type="button"
-      >
+    <!-- Section: Hobbies -->
+    <section>
+      <h3 class="text-lg font-semibold text-gray-700 mb-2 text-center">
+        Hobbies
+      </h3>
+      <ul class="flex flex-wrap gap-2 justify-center text-sm text-pink-600">
+        @for (hobby of user.hobbies; track $index) {
+        <li class="bg-pink-100 px-3 py-1 rounded-full">#{{ hobby }}</li>
+        }
+      </ul>
+    </section>
+
+    <!-- Section: Account -->
+    <section>
+      <h3 class="text-lg font-semibold text-gray-700 mb-2 text-center">
+        Account
+      </h3>
+      @if(user.account){
+      <p class="text-center">
+        <span class="font-medium">Status:</span>
+        <span [ngClass]="getColorStatus()" class="ml-2">
+          {{ getStatusValue() }}
+        </span>
+      </p>
+      <p class="text-center mt-1">
+        <span class="font-medium">Subscription:</span>
+        <span [ngClass]="getSubscriptionColor()" class="ml-2">
+          {{ getSubscriptionStatus() }}
+        </span>
+      </p>
+      }@else {
+      <p class="text-center text-gray-400">No data</p>
+      }
+    </section>
+
+    <!-- Section: Buttons -->
+    <section class="flex justify-around pt-4 border-t border-gray-200">
+      <button (click)="handleDeleteUser()" type="button" class="btn-danger">
         Delete
       </button>
     </section>
   </div>
+  } @else {
+  <h2 class="text-center text-xl text-gray-500">User not found!</h2>
   }
 </div>

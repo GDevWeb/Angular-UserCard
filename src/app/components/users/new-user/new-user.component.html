@@ -2,7 +2,7 @@
   <form
     [formGroup]="newUserForm"
     (submit)="handleSubmit()"
-    class="w-xl p-4 mx-auto text-white bg-slate-500 rounded-lg drop-shadow-xl"
+    class="max-w-xl p-4 mx-auto text-white bg-slate-500 rounded-lg drop-shadow-xl"
   >
     <h2>Add an user</h2>
     <section id="identity">
@@ -78,7 +78,7 @@
     <section id="profileImage">
       <div class="inputGroup">
         <label for="profileImage">Upload your profile image</label>
-        <input type="file" formControlName="imgUrl" id="profileImage" />
+        <input type="file" formControlName="imgURL" id="profileImage" />
       </div>
     </section>
 
