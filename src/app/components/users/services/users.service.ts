@@ -34,6 +34,23 @@ export class UsersService {
 
   // --Read--
   getUsers() {
+    const userFromStorage = localStorage.getItem('users');
+
+    if (userFromStorage) {
+      const parsedUsers = JSON.parse(userFromStorage);
+
+      const normalizedUsers = parsedUsers.map((user: User) => ({
+        ...user,
+
+        skills: Array.isArray(user.skills)
+          ? user.skills
+          : Object.values(user.skills || {}),
+        hobbies: Array.isArray(user.hobbies)
+          ? user.hobbies
+          : Object.values(user.hobbies || {}),
+      }));
+      this.users$.next(normalizedUsers);
+    }
     return this.users$.asObservable();
   }
 
@@ -44,8 +61,6 @@ export class UsersService {
 
   selectedUserId(userId: number) {
     this.userId = Number(userId);
-
-    console.log(`[UserServices] - selected userId:`, userId);
   }
 
   //--Update--
@@ -104,7 +119,7 @@ export class UsersService {
 
   /* *** Get the value of the account_status *** */
   setStatusValue(index: number) {
-    const getStatus = this.users$.getValue()[index].account.status;
+    const getStatus = this.users$.getValue()[index].account.status.toString();
     const statusValue = getStatus ? 'Enabled' : 'Disabled';
     this.setColorStatus(statusValue);
 

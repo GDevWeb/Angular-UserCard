@@ -1,74 +1,77 @@
 <div class="grid-cols-1">
-  @if(setUser()){
+  @if(user){
   <div #userCard class="user-card">
     <img
-      [src]="setUser()?.imgURL"
-      [alt]="`Photo of ${setUser()?.fname} ${setUser()?.lname}`"
-      [title]="`Photo of ${setUser()?.fname} ${setUser()?.lname}`"
+      [src]="user.imgURL"
+      [alt]="`Photo of ${user.fname} ${user.lname}`"
+      [title]="`Photo of ${user.fname} ${user.lname}`"
     />
     <section class="card-header">
       <h3>Identity</h3>
       <p>
         <strong>First name: </strong>
-        <span>{{ setUser()?.fname }}</span>
+        <span>{{ user.fname }}</span>
       </p>
       <p>
         <strong>Last name: </strong>
-        <span>{{ setUser()?.lname }}</span>
+        <span>{{ user.lname }}</span>
       </p>
       <p>
         <strong>Genre: </strong>
-        <span>{{ getDisplayGenre(setUser()?.genre || "male") }}</span>
+        <span>{{ getDisplayGenre() }}</span>
       </p>
     </section>
     <section>
       <h3>Job</h3>
       <p>
-        <span>{{ setUser()?.job }}</span>
+        <span>{{ user.job }}</span>
       </p>
     </section>
     <div
       id="card-content"
-      [hidden]="!isCardContentVisibility()"
+      [hidden]="!toggleCardContent()"
       class="w-full flex flex-col gap-4 items-start justify-evenly"
     >
       <section class="w-full">
         <h3 class="w-full text-center">Skills</h3>
         <ul>
-          @for (skill of setUser()?.skills; track $index) {
+          @if (isArray(user.skills)) { @for (skill of user.skills; track $index)
+          {
           <li>➡️{{ skill }}</li>
-          }
+          } }
         </ul>
       </section>
       <section>
         <h3>Hobbies</h3>
         <ul>
-          @for (hobby of setUser()?.hobbies; track $index) {
+          @for (hobby of user.hobbies; track $index) {
           <li>➡️{{ hobby }}</li>
           }
         </ul>
       </section>
       <section class="card-footer">
         <h3>Account</h3>
+        @if(user.account){
         <p>
           <strong>Status: </strong>
-          <span [ngClass]="setColorStatus(getColorStatus())">{{
-            getStatusValue()
-          }}</span>
+          {{ isArray(user.account.status.toString() ? "Enabled" : "Disabled") }}
+          <span [ngClass]="getColorStatus()">{{ getStatusValue() }}</span>
         </p>
+
         <div>
           <p>
             <strong>Subscription: </strong>
-            <span
-              [ngClass]="
-                setColorSubscriptionStatus(getSubscriptionStatus(userId))
-              "
-              >{{ getSubscriptionStatus(userId) }}</span
-            >
+            <span [ngClass]="getSubscriptionStatus()">{{
+              getSubscriptionStatus()
+            }}</span>
           </p>
         </div>
+        }@else {
+        <h3>No data</h3>
+        }
       </section>
     </div>
+
     <section class="flex flex-wrap items-center justify-evenly">
       <h3 class="w-full">Buttons</h3>
       <button
@@ -76,14 +79,10 @@
         type="button"
         class="btn-primary my-4"
       >
-        {{ isCardContentVisibility() ? "Hide" : "Show Details" }}
+        {{ toggleCardContent() ? "Hide" : "Show Details" }}
       </button>
 
-      <button
-        (click)="handleDeleteUser(userId)"
-        class="btn-danger"
-        type="button"
-      >
+      <button (click)="handleDeleteUser()" class="btn-danger" type="button">
         Delete
       </button>
     </section>

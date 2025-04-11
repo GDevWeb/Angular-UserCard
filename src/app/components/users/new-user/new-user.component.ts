@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormArray,
   FormControl,
@@ -21,7 +21,7 @@ import { NewUserService } from './new-user.service';
   templateUrl: './new-user.component.html',
   styleUrl: './new-user.component.css',
 })
-export class NewUserComponent {
+export class NewUserComponent implements OnInit {
   readonly genreList = MOCK_GENRE_LIST;
   readonly jobList = MOCK_JOB_LIST;
   readonly skillsList = MOCK_SKILL_LIST;
@@ -39,6 +39,7 @@ export class NewUserComponent {
     private newUserService: NewUserService
   ) {}
 
+  ngOnInit(): void {}
   addUser!: User;
 
   newUserForm = new FormGroup({
@@ -58,6 +59,8 @@ export class NewUserComponent {
     job: new FormControl('', Validators.required),
     skills: new FormArray([]),
     hobbies: new FormArray([]),
+    account: new FormArray([]),
+    tasks: new FormArray([]),
   });
 
   /* *** Skills *** */
@@ -138,10 +141,5 @@ export class NewUserComponent {
 
   getRandomImgURL(): number {
     return this.newUserService.generateRandomImgUrl();
-  }
-
-  /* ***Modal*** */
-  onCancel() {
-    return !this.isOpen;
   }
 }
