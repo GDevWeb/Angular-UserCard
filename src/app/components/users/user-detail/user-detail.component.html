@@ -1,6 +1,5 @@
 <div class="grid-cols-1">
   @if(setUser()){
-
   <div #userCard class="user-card">
     <img
       [src]="setUser()?.imgURL"
@@ -89,5 +88,7 @@
       </button>
     </section>
   </div>
+  } @else {
+  <h2>User not found!</h2>
   }
 </div>

@@ -38,6 +38,10 @@ export class UserDetailComponent implements OnInit {
   }
 
   setUser(): User | undefined {
+    if (this.userId <= 0 || this.userId > this.users.length) {
+      return undefined;
+    }
+
     const user = this.users.find((user) => user.id === this.userId);
 
     if (!user) {
