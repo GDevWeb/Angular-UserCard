@@ -10,7 +10,12 @@ import {
 import { MOCK_GENRE_LIST } from '../../../../../data/MOCK_GENRE_LIST';
 import { MOCK_JOB_LIST } from '../../../../../data/MOCK_JOB_LIST';
 import { MOCK_SKILL_LIST } from '../../../../../data/MOCK_SKILLS';
-import { type Genre, GenreI, User } from '../../../../../types/user.type';
+import {
+  type Genre,
+  GenreI,
+  Subscription,
+  User,
+} from '../../../../../types/user.type';
 import { UsersService } from '../services/users.service';
 import { NewUserService } from './new-user.service';
 
@@ -60,7 +65,12 @@ export class NewUserComponent implements OnInit {
     job: new FormControl('', Validators.required),
     skills: new FormArray([]),
     hobbies: new FormArray([]),
-    account: new FormArray([]),
+    account: new FormArray([
+      new FormGroup({
+        status: new FormControl(true),
+        subscription: new FormControl(Subscription.free),
+      }),
+    ]),
     tasks: new FormArray([]),
   });
 

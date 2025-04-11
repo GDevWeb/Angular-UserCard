@@ -56,13 +56,12 @@
       <p class="text-center">
         <span class="font-medium">Status:</span>
         <span [ngClass]="getColorStatus()" class="ml-2">
-          <!-- {{ getStatusValue() }} -->
-          {{ user.account.status ? "true" : "false" }}
+          {{ getStatusValue() }}
         </span>
       </p>
       <p class="text-center mt-1">
         <span class="font-medium">Subscription:</span>
-        <span [ngClass]="getSubscriptionStatus()" class="ml-2">
+        <span [ngClass]="getSubscriptionColor()" class="ml-2">
           {{ getSubscriptionStatus() }}
         </span>
       </p>

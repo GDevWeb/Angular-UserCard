@@ -74,4 +74,22 @@ export class UserDetailComponent implements OnInit {
   isArray(value: any): boolean {
     return Array.isArray(value);
   }
+
+  getUserAccount(): number | boolean {
+    const account = this.user?.account;
+
+    if (!account) return 0;
+
+    const { subscription, status } = account;
+
+    const subscriptionIsValid =
+      subscription !== undefined && subscription !== null;
+    const statusIsValid = typeof status === 'boolean';
+
+    if (!subscriptionIsValid || !statusIsValid) {
+      return 0;
+    }
+
+    return status && subscription;
+  }
 }

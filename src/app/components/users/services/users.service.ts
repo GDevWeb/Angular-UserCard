@@ -1,14 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import MOCK_USERS from '../../../../../data/MOCK_USERS';
-import { Genre, User } from '../../../../../types/user.type';
+// import MOCK_USERS from '../../../../../data/MOCK_USERS';
+import { Genre, Subscription, User } from '../../../../../types/user.type';
+import userJSON from '../../../../assets/data/users.json';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-  private users$ = new BehaviorSubject<User[]>(MOCK_USERS);
+  // private users$ = new BehaviorSubject<User[]>(MOCK_USERS);
+  private users$ = new BehaviorSubject<User[]>(
+    (userJSON as any[]).map((user) => ({
+      ...user,
+      account: {
+        ...user.account,
+        subscription: user.account.subscription as Subscription, // Ensure proper type casting
+      },
+    }))
+  );
   filteredUserList: User[] = [];
 
   userId!: number;
@@ -120,23 +130,11 @@ export class UsersService {
   }
 
   /* *** Get the value of the account_status *** */
-  setStatusValue(index: number) {
-    const user = this.users$.getValue()[index];
-    console.log('Error - user', user);
+  setStatusValue(index: number): string {
+    const user = this.users$.getValue().find((u) => u.id === index);
+    if (!user || typeof user.account?.status !== 'boolean') return 'Disabled';
 
-    const getStatus = this.users$.getValue()[index].account.status.toString();
-    console.log();
-
-    const statusValue = getStatus.toString() ? 'Enabled' : 'Disabled';
-    console.log(statusValue, 'from userServices');
-
-    if (!statusValue) {
-      console.log('Error - statusValue');
-    }
-
-    this.setColorStatus(statusValue);
-
-    return statusValue;
+    return user.account.status ? 'Enabled' : 'Disabled';
   }
 
   setColorStatus(value: string): string {
