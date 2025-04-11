@@ -19,6 +19,6 @@
 
 ## 📅 Évolution prévue
 
-- [ ] Ajout du routing
+- [x] Ajout du routing
 - [ ] Appel d’API fictive (JSON server)
 - [ ] Auth / Guard / Lazy Loading (avril 2025)

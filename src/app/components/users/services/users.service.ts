@@ -120,6 +120,8 @@ export class UsersService {
   /* *** Get the value of the account_status *** */
   setStatusValue(index: number) {
     const getStatus = this.users$.getValue()[index].account.status.toString();
+    console.log();
+
     const statusValue = getStatus ? 'Enabled' : 'Disabled';
     this.setColorStatus(statusValue);
 
