@@ -27,6 +27,8 @@ export class UsersService {
   createUser(newUser: User) {
     const currentUsers = this.users$.getValue();
     const updatedUsers = [...currentUsers, newUser];
+    console.log('user id', newUser.id);
+
     this.users$.next(updatedUsers);
     this.saveUsers(updatedUsers);
     console.log('From userService component, addUser', this.users$);
@@ -119,10 +121,19 @@ export class UsersService {
 
   /* *** Get the value of the account_status *** */
   setStatusValue(index: number) {
+    const user = this.users$.getValue()[index];
+    console.log('Error - user', user);
+
     const getStatus = this.users$.getValue()[index].account.status.toString();
     console.log();
 
-    const statusValue = getStatus ? 'Enabled' : 'Disabled';
+    const statusValue = getStatus.toString() ? 'Enabled' : 'Disabled';
+    console.log(statusValue, 'from userServices');
+
+    if (!statusValue) {
+      console.log('Error - statusValue');
+    }
+
     this.setColorStatus(statusValue);
 
     return statusValue;

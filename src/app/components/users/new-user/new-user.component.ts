@@ -43,6 +43,7 @@ export class NewUserComponent implements OnInit {
   addUser!: User;
 
   newUserForm = new FormGroup({
+    id: new FormControl(this.getRandomId),
     fname: new FormControl('', [
       Validators.required,
       Validators.minLength(2),

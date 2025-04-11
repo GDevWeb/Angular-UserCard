@@ -56,7 +56,8 @@
       <p class="text-center">
         <span class="font-medium">Status:</span>
         <span [ngClass]="getColorStatus()" class="ml-2">
-          {{ getStatusValue() }}
+          <!-- {{ getStatusValue() }} -->
+          {{ user.account.status ? "true" : "false" }}
         </span>
       </p>
       <p class="text-center mt-1">
