@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Genre, User } from '../../../../../types/user.type';
-import { UsersService } from '../services/users.service';
+import { UsersService } from '../../../services/users.service';
 
 @Component({
   selector: 'app-card',

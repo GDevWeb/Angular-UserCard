@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, User } from '../../../../../types/user.type';
-import { UsersService } from '../services/users.service';
+import { UsersService } from '../../../services/users.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -23,6 +23,7 @@ export class UserDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.userId = +params['userId'];
+
       this.userService.getUsers().subscribe((users) => {
         this.user = users.find((user) => user.id === this.userId);
       });
