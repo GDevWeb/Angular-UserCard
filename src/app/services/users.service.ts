@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-// import MOCK_USERS from '../../../../../data/MOCK_USERS';
-import { Genre, Subscription, User } from '../../../../../types/user.type';
-import userJSON from '../../../../assets/data/users.json';
-
+import { Genre, Subscription, User } from '../../../types/user.type';
+import userJSON from '../../assets/data/users.json';
 @Injectable({
   providedIn: 'root',
 })

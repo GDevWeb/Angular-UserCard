@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import MOCK_USERS from '../../../../../data/MOCK_USERS';
-import { User } from '../../../../../types/user.type';
+import MOCK_USERS from '../../../data/MOCK_USERS';
+import { User } from '../../../types/user.type';
 
 @Injectable({
   providedIn: 'root',

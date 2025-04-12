@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Genre, Subscription, User } from '../../../../../types/user.type';
+import { Genre, Subscription, User } from '../../../types/user.type';
 
 @Injectable({
   providedIn: 'root',

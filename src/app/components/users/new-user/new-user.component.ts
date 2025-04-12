@@ -16,8 +16,8 @@ import {
   Subscription,
   User,
 } from '../../../../../types/user.type';
-import { UsersService } from '../services/users.service';
-import { NewUserService } from './new-user.service';
+import { NewUserService } from '../../../services/new-user.service';
+import { UsersService } from '../../../services/users.service';
 
 @Component({
   selector: 'app-new-user',

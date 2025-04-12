@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { User } from '../../../../../types/user.type';
+import { TaskService } from '../../../services/task.service';
+import { UsersService } from '../../../services/users.service';
+import { CounterComponent } from '../../counter/counter.component';
 import { FilterComponent } from '../../filter/filter.component';
 import { CardComponent } from '../card/card.component';
-import { UsersService } from '../services/users.service';
-import { TaskService } from '../tasks/task.service';
-import { CounterComponent } from '../../counter/counter.component';
 
 @Component({
   selector: 'app-users',
