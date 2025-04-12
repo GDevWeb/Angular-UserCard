@@ -11,14 +11,19 @@
 
 ## Contenu
 
-| Composant          | Description                                                | Concepts Angular                |
-| ------------------ | ---------------------------------------------------------- | ------------------------------- |
-| UserCardComponent  | Affichage dynamique d’utilisateurs avec détails togglables | `@Input()`, `*ngIf`, `*ngFor`   |
-| DeleteConfirmModal | Suppression avec confirmation                              | `@Output()`, EventEmitter       |
-| RoleFilter         | Filtrage conditionnel                                      | `pipe`, `*ngIf`, gestion d’état |
+| Composant           | Description                                                | Concepts Angular                         |
+| ------------------- | ---------------------------------------------------------- | ---------------------------------------- |
+| UserCardComponent   | Affichage dynamique d’utilisateurs avec détails togglables | `@Input()`, `*ngIf`, `*ngFor`            |
+| DeleteConfirmModal  | Suppression avec confirmation                              | `@Output()`, EventEmitter                |
+| RoleFilter          | Filtrage conditionnel                                      | `pipe`, `*ngIf`, gestion d’état          |
+| UserDetailComponent | Affichage des infos utilisateur via route dynamique        | `ActivatedRoute`, `routerLink`, `Guard`  |
+| NewUserReactiveForm | Formulaire de création utilisateur réactif avec validation | `FormGroup`, `Validators`, `formControl` |
 
 ## 📅 Évolution prévue
 
 - [x] Ajout du routing
+- [x] Formulaire réactif avec validation
+- [x] Guard de route sur `/users/:id`
+- [x] Gestion d’état avec `BehaviorSubject`
 - [ ] Appel d’API fictive (JSON server)
 - [ ] Auth / Guard / Lazy Loading (avril 2025)
