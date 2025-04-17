@@ -3,27 +3,25 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Genre, Subscription, User } from '../../../types/user.type';
 import userJSON from '../../assets/data/users.json';
+import { ToastService } from './toast.service';
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-  // private users$ = new BehaviorSubject<User[]>(MOCK_USERS);
   private users$ = new BehaviorSubject<User[]>(
     (userJSON as any[]).map((user) => ({
       ...user,
       account: {
         ...user.account,
-        subscription: user.account.subscription as Subscription, // Ensure proper type casting
+        subscription: user.account.subscription as Subscription,
       },
     }))
   );
   filteredUserList: User[] = [];
-
   userId!: number;
-
   private router = new Router();
 
-  constructor() {
+  constructor(private toastService: ToastService) {
     const userFromStorage = localStorage.getItem('users');
     if (userFromStorage) {
       this.users$.next(JSON.parse(userFromStorage) as User[]);
@@ -36,10 +34,12 @@ export class UsersService {
     const currentUsers = this.users$.getValue();
     const updatedUsers = [...currentUsers, newUser];
     console.log('user id', newUser.id);
-
     this.users$.next(updatedUsers);
     this.saveUsers(updatedUsers);
-    console.log('From userService component, addUser', this.users$);
+    this.toastService.showToast('User successfully created', 'success');
+    setTimeout(() => {
+      this.router.navigate(['/user-list']);
+    }, 2000);
   }
 
   // --Read--
@@ -83,19 +83,26 @@ export class UsersService {
     const currentUsers = this.users$.getValue();
     const userToDelete = currentUsers.find((user) => user.id === userId);
 
-    if (!userToDelete) return;
+    if (!userToDelete) {
+      this.toastService.showToast('User not found', 'error');
+      return;
+    }
 
     const confirmation = confirm(
       `Delete ${userToDelete.fname} ${userToDelete.lname}?`
     );
-    if (!confirmation) return;
+    if (!confirmation) {
+      this.toastService.showToast('Action aborted', 'error');
+      return;
+    }
 
     const updatedUsers = currentUsers.filter((user) => user.id !== userId);
     this.users$.next(updatedUsers);
     this.saveUsers(updatedUsers);
+    this.toastService.showToast('User successfully deleted', 'success');
     setTimeout(() => {
-      this.router.navigate(['/']);
-    }, 3000);
+      this.router.navigate(['/user-list']);
+    }, 2000);
   }
 
   // /* ***Filter*** */
@@ -112,6 +119,8 @@ export class UsersService {
 
     return this.filteredUserList;
   }
+
+  /* ***Set functions*** */
 
   /* ***User details*** */
   setUserGenre(genre: Genre): string {

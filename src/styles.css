@@ -138,6 +138,24 @@ option {
     }
   }
 }
+
+/* ***Toast*** */
+.toast-container {
+  @apply fixed bottom-15 right-5 p-4 rounded text-white max-w-xs shadow-lg transform translate-y-24 opacity-0 transition-all duration-300 z-50;
+}
+
+.toast-container.visible {
+  @apply translate-y-0 opacity-100;
+}
+
+.toast-success {
+  @apply bg-green-500;
+}
+
+.toast-error {
+  @apply bg-red-500;
+}
+
 /* Effects */
 .hover-effect {
   @apply hover:scale-110 transition-transform duration-300 ease-in-out;
