@@ -26,7 +26,7 @@
 
 ---
 
-## 🚧 Évolution prévue
+##  Évolution prévue
 
 - [x] Ajout du routing dynamique
 - [x] Reactive Form + validation complète
