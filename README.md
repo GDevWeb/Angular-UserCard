@@ -1,29 +1,48 @@
 # Sandbox Angular – UserCard
 
-> Mini-projets Angular réalisés dans le cadre de mon apprentissage (2025).  
-> Focus sur les composants, services, interactions, et bonnes pratiques Angular.
+> 🧪 Mini-projets Angular réalisés dans le cadre de mon apprentissage (2025).  
+> 🎯 Objectif : explorer les composants, services, routing, gestion d’état et bonnes pratiques Angular 2+.
 
-## Objectifs
+---
 
-- Comprendre et maîtriser les concepts Angular 2+ (components, services, inputs/outputs, pipes, routing, etc.)
-- Construire des éléments UI réutilisables (ex : UserCard, modales, listes filtrées)
-- Appliquer Tailwind CSS, gestion d’état, interactions utilisateur
+## 🎯 Objectifs pédagogiques
 
-## Contenu
+- Maîtriser les concepts clés d’Angular (components, services, inputs/outputs, pipes, routing…)
+- Construire des composants UI réutilisables et dynamiques
+- Structurer un projet maintenable avec un style moderne (Tailwind)
+- Appliquer des formulaires réactifs et logique métier
 
-| Composant           | Description                                                | Concepts Angular                         |
-| ------------------- | ---------------------------------------------------------- | ---------------------------------------- |
-| UserCardComponent   | Affichage dynamique d’utilisateurs avec détails togglables | `@Input()`, `*ngIf`, `*ngFor`            |
-| DeleteConfirmModal  | Suppression avec confirmation                              | `@Output()`, EventEmitter                |
-| RoleFilter          | Filtrage conditionnel                                      | `pipe`, `*ngIf`, gestion d’état          |
-| UserDetailComponent | Affichage des infos utilisateur via route dynamique        | `ActivatedRoute`, `routerLink`, `Guard`  |
-| NewUserReactiveForm | Formulaire de création utilisateur réactif avec validation | `FormGroup`, `Validators`, `formControl` |
+---
 
-## 📅 Évolution prévue
+## 🔍 Composants développés
 
-- [x] Ajout du routing
-- [x] Formulaire réactif avec validation
+| Composant              | Description                                                | Concepts Angular                          |
+|------------------------|------------------------------------------------------------|-------------------------------------------|
+| `UserCardComponent`    | Carte utilisateur avec affichage dynamique                 | `@Input()`, `*ngIf`, `*ngFor`             |
+| `DeleteConfirmModal`   | Fenêtre modale de suppression                              | `@Output()`, `EventEmitter`               |
+| `RoleFilterComponent`  | Filtrage conditionnel des utilisateurs                     | `pipe`, `ngIf`, gestion d’état            |
+| `UserDetailComponent`  | Route dynamique vers fiche utilisateur                     | `ActivatedRoute`, `routerLink`, `Guard`   |
+| `NewUserReactiveForm`  | Formulaire de création utilisateur avec validation         | `FormGroup`, `Validators`, `formControl`  |
+
+---
+
+## 🚧 Évolution prévue
+
+- [x] Ajout du routing dynamique
+- [x] Reactive Form + validation complète
 - [x] Guard de route sur `/users/:id`
 - [x] Gestion d’état avec `BehaviorSubject`
-- [ ] Appel d’API fictive (JSON server)
-- [ ] Auth / Guard / Lazy Loading (avril 2025)
+- [ ] Intégration d’une API factice (`json-server`)
+- [ ] Authentification / Lazy loading / Optimisations
+
+---
+
+##  Remarques
+
+> Ce projet est un **sandbox technique** évolutif.  
+> Il fait suite à un **projet professionnel Angular complet** réalisé dans le cadre de mon alternance à la DSI du Conseil d’État (application CRA).
+
+---
+
+🔗 [Démo](https://github.com/GDevWeb/Angular-UserCard) – Ce repo n’est pas destiné à la production mais à la démonstration de compétences Angular.
+
