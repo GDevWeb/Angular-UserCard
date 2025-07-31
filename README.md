@@ -1,11 +1,11 @@
 # Sandbox Angular – UserCard
 
-> 🧪 Mini-projets Angular réalisés dans le cadre de mon apprentissage (2025).  
-> 🎯 Objectif : explorer les composants, services, routing, gestion d’état et bonnes pratiques Angular 2+.
+>  Mini-projets Angular réalisés dans le cadre de mon apprentissage (2025).  
+>  Objectif : explorer les composants, services, routing, gestion d’état et bonnes pratiques Angular 2+.
 
 ---
 
-## 🎯 Objectifs pédagogiques
+##  Objectifs pédagogiques
 
 - Maîtriser les concepts clés d’Angular (components, services, inputs/outputs, pipes, routing…)
 - Construire des composants UI réutilisables et dynamiques
@@ -14,7 +14,7 @@
 
 ---
 
-## 🔍 Composants développés
+##  Composants développés
 
 | Composant              | Description                                                | Concepts Angular                          |
 |------------------------|------------------------------------------------------------|-------------------------------------------|
@@ -44,5 +44,5 @@
 
 ---
 
-🔗 [Démo](https://github.com/GDevWeb/Angular-UserCard) – Ce repo n’est pas destiné à la production mais à la démonstration de compétences Angular.
+- [Démo](https://github.com/GDevWeb/Angular-UserCard) – Ce repo n’est pas destiné à la production mais à la démonstration de compétences Angular.
 
